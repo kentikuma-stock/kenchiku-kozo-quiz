@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建築構造 ○×クイズ | 一級・二級建築士対策</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a4a8a;--navy-dark:#123570;--navy-light:#e8eef7;--orange:#f07d00;--orange-light:#fff4e6;--green:#1a8a4a;--green-light:#e8f7ee;--red:#c0392b;--red-light:#fdecea;--gray:#f5f6f8;--border:#dde2ea;--text:#1a1a2e;--text-muted:#6b7280;--white:#ffffff;--radius:8px;--shadow:0 2px 8px rgba(26,74,138,.10);--shadow-lg:0 4px 20px rgba(26,74,138,.15)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:sticky;top:0;z-index:100}
+.header-inner{max-width:900px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:36px;height:36px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:white}
+.logo-text{font-size:16px;font-weight:700;color:white;line-height:1.2}
+.logo-sub{font-size:10px;color:rgba(255,255,255,.7);font-weight:400}
+.header-score{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border-radius:20px;padding:6px 12px}
+.header-score-item{font-size:12px;color:rgba(255,255,255,.8);font-family:'DM Mono',monospace}
+.header-score-item span{font-weight:700;font-size:14px}
+.header-score-item span.c{color:#6ee7a0}
+.header-score-item span.w{color:#fca5a5}
+.header-score-sep{color:rgba(255,255,255,.3);font-size:12px}
+.mode-nav{background:var(--white);border-bottom:2px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.mode-nav::-webkit-scrollbar{display:none}
+.mode-nav-inner{max-width:900px;margin:0 auto;padding:0 16px;display:flex}
+.mode-tab{flex-shrink:0;padding:12px 18px;border:none;background:transparent;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
+.mode-tab:hover{color:var(--navy)}
+.mode-tab.active{color:var(--navy);border-bottom-color:var(--orange);font-weight:700}
+.main-wrap{max-width:900px;margin:0 auto;padding:20px 16px;width:100%;flex:1;display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
+.quiz-area{display:flex;flex-direction:column;gap:14px}
+.progress-card{background:var(--white);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label{font-size:12px;color:var(--text-muted);font-family:'DM Mono',monospace}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:3px;transition:width .4s ease}
+.question-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .2s}
+.question-card.correct{box-shadow:0 0 0 2px var(--green),var(--shadow)}
+.question-card.wrong{box-shadow:0 0 0 2px var(--red),var(--shadow)}
+.question-header{background:var(--navy-light);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.cat-tag{font-size:11px;font-weight:700;color:var(--navy);background:white;border:1px solid var(--navy);padding:2px 8px;border-radius:4px}
+.q-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);margin-left:auto}
+.question-body{padding:24px 20px}
+.question-text{font-size:16px;font-weight:500;line-height:1.8;color:var(--text)}
+.answer-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px}
+.btn-answer{padding:20px 12px;border-radius:var(--radius);border:2px solid transparent;font-family:'Noto Sans JP',sans-serif;font-size:28px;font-weight:900;cursor:pointer;transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.btn-answer span.label{font-size:11px;font-weight:500;letter-spacing:1px}
+.btn-maru{background:var(--green-light);border-color:#a7d9bc;color:var(--green)}
+.btn-maru:hover:not(:disabled){background:#d1f0de;border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,138,74,.2)}
+.btn-batu{background:var(--red-light);border-color:#f0a9a4;color:var(--red)}
+.btn-batu:hover:not(:disabled){background:#fcd9d6;border-color:var(--red);transform:translateY(-2px);box-shadow:0 4px 12px rgba(192,57,43,.2)}
+.btn-answer:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.result-panel{display:none;margin:0 20px 16px;border-radius:var(--radius);padding:14px 16px}
+.result-panel.correct{display:block;background:var(--green-light);border:1px solid #a7d9bc}
+.result-panel.wrong{display:block;background:var(--red-light);border:1px solid #f0a9a4}
+.result-title{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.result-title.correct{color:var(--green)}
+.result-title.wrong{color:var(--red)}
+.correct-ans{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:4px}
+.correct-ans.c{background:var(--green);color:white}
+.correct-ans.w{background:var(--red);color:white}
+.exp-text{font-size:13px;line-height:1.75;color:#374151}
+.btn-next{display:none;width:calc(100% - 40px);margin:0 20px 20px;padding:13px;background:var(--navy);color:white;border:none;border-radius:var(--radius);font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.5px}
+.btn-next.show{display:block}
+.btn-next:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.side-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.side-card-header{background:var(--navy);padding:10px 14px;font-size:12px;font-weight:700;color:white;letter-spacing:.5px}
+.side-card-body{padding:14px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-item{text-align:center;padding:10px 8px;background:var(--gray);border-radius:6px}
+.stat-num{font-family:'DM Mono',monospace;font-size:28px;font-weight:500;line-height:1;margin-bottom:4px}
+.stat-num.c{color:var(--green)}
+.stat-num.w{color:var(--red)}
+.stat-num.t{color:var(--navy)}
+.stat-num.a{color:var(--orange)}
+.stat-label{font-size:11px;color:var(--text-muted)}
+.accuracy-bar-wrap{margin-top:12px}
+.accuracy-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:6px}
+.accuracy-val{font-weight:700;color:var(--navy)}
+.accuracy-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.accuracy-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:4px;transition:width .5s ease}
+.info-list{display:flex;flex-direction:column;gap:8px}
+.info-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.5;color:#374151}
+.info-dot{width:6px;height:6px;min-width:6px;background:var(--orange);border-radius:50%;margin-top:6px}
+footer{background:var(--navy-dark);padding:16px;text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:auto}
+footer a{color:rgba(255,255,255,.7);text-decoration:none}
+footer a:hover{color:white}
+@media(max-width:680px){
+  .main-wrap{grid-template-columns:1fr;padding:12px;gap:12px}
+  .sidebar{display:none}
+  .question-text{font-size:15px}
+  .btn-answer{padding:16px 12px;font-size:24px}
+  .mode-tab{padding:10px 14px;font-size:12px}
+  .header-score{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">構</div>
+      <div><div class="logo-text">建築構造クイズ</div><div class="logo-sub">一級・二級建築士対策</div></div>
+    </a>
+    <div class="header-score">
+      <div class="header-score-item">正解 <span class="c" id="hdr-c">0</span></div>
+      <div class="header-score-sep">/</div>
+      <div class="header-score-item">不正解 <span class="w" id="hdr-w">0</span></div>
+    </div>
+  </div>
+</header>
+<nav class="mode-nav">
+  <div class="mode-nav-inner">
+    <button class="mode-tab active" data-mode="all">すべて</button>
+    <button class="mode-tab" data-mode="一級建築士試験対策">一級対策</button>
+    <button class="mode-tab" data-mode="二級建築士試験対策">二級対策</button>
+    <button class="mode-tab" data-mode="構造全般の学び直し（初級）">初級</button>
+    <button class="mode-tab" data-mode="構造全般の学び直し（中級）">中級</button>
+  </div>
+</nav>
+<div class="main-wrap">
+  <div class="quiz-area">
+    <div class="progress-card">
+      <div class="progress-meta">
+        <span class="progress-label" id="prog-text">0 / 0問</span>
+        <span class="progress-label" id="prog-acc">正答率 --%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="question-card">
+      <div class="question-header">
+        <span class="cat-tag" id="cat-tag">—</span>
+        <span class="q-num" id="q-num">Q—</span>
+      </div>
+      <div class="question-body">
+        <div class="question-text" id="question-text">モードを選択して問題をスタートしましょう。</div>
+      </div>
+      <div class="answer-btns">
+        <button class="btn-answer btn-maru" id="btn-maru" onclick="answer(true)">○<span class="label">正しい</span></button>
+        <button class="btn-answer btn-batu" id="btn-batu" onclick="answer(false)">×<span class="label">誤り</span></button>
+      </div>
+      <div class="result-panel" id="result-panel">
+        <div class="result-title" id="result-title"></div>
+        <div class="exp-text" id="exp-text"></div>
+      </div>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ →</button>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="side-card">
+      <div class="side-card-header">📊 現在のスコア</div>
+      <div class="side-card-body">
+        <div class="stat-grid">
+          <div class="stat-item"><div class="stat-num c" id="sc-c">0</div><div class="stat-label">正解</div></div>
+          <div class="stat-item"><div class="stat-num w" id="sc-w">0</div><div class="stat-label">不正解</div></div>
+          <div class="stat-item"><div class="stat-num t" id="sc-t">0</div><div class="stat-label">回答数</div></div>
+          <div class="stat-item"><div class="stat-num a" id="sc-a">--%</div><div class="stat-label">正答率</div></div>
+        </div>
+        <div class="accuracy-bar-wrap">
+          <div class="accuracy-label"><span>正答率</span><span class="accuracy-val" id="acc-val">--%</span></div>
+          <div class="accuracy-bar"><div class="accuracy-fill" id="acc-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="side-card">
+      <div class="side-card-header">📝 このクイズについて</div>
+      <div class="side-card-body">
+        <div class="info-list">
+          <div class="info-item"><div class="info-dot"></div><div>過去問の丸暗記ではなく、<strong>原理から理解できる</strong>問題を厳選。</div></div>
+          <div class="info-item"><div class="info-dot"></div><div>各問題に<strong>詳しい解説</strong>付き。なぜ正解なのかがわかります。</div></div>
+          <div class="info-item"><div class="info-dot"></div><div>問題は<a href="https://kentiku-kouzou.jp/" target="_blank" style="color:var(--navy);font-weight:700;">kentiku-kouzou.jp</a>の記事をもとに作成。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>問題は <a href="https://kentiku-kouzou.jp/" target="_blank">kentiku-kouzou.jp</a> の記事をもとに作成 | 建築構造クイズ</footer>
+<script>
+const Q=[{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"単純梁に集中荷重が作用するときのたわみの公式はPL³/48EIである。","ans":true,"exp":"中央集中荷重が作用する単純梁の最大たわみはδ=PL³/48EIが正しい。分子はPL³、分母は48EIで覚える。"},{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"単純梁に等分布荷重が作用するときのたわみの公式はwL⁴/384EIである。","ans":false,"exp":"等分布荷重が作用する単純梁の最大たわみはδ=5wL⁴/384EIである。分子に係数「5」がつくことに注意。"},{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"片持ち梁に先端集中荷重が作用するときの最大たわみはPL³/3EIである。","ans":true,"exp":"先端集中荷重が作用する片持ち梁の最大たわみはδ=PL³/3EIが正しい。分母は3EI。"},{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"片持ち梁に等分布荷重が作用するときの最大たわみはwL⁴/8EIである。","ans":true,"exp":"等分布荷重が作用する片持ち梁の最大たわみはδ=wL⁴/8EIが正しい。分母は8EI。"},{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"たわみの計算において、集中荷重作用時はスパンの4乗、等分布荷重作用時はスパンの3乗が用いられる。","ans":false,"exp":"逆である。集中荷重作用時はスパンの3乗（PL³/EI）、等分布荷重作用時はスパンの4乗（wL⁴/EI）が用いられる。"},{"mode":"一級建築士試験対策","cat":"構造力学・たわみ","q":"両端固定梁に等分布荷重が作用するときの最大たわみは、同条件の単純梁のたわみより小さい。","ans":true,"exp":"両端固定梁はδ=wL⁴/384EI、単純梁はδ=5wL⁴/384EIであり、両端固定梁のたわみは単純梁の1/5に相当し、明らかに小さい。"},{"mode":"二級建築士試験対策","cat":"構造力学・たわみ","q":"たわみの単位にはmm（ミリメートル）やcm（センチメートル）が一般的に用いられる。","ans":true,"exp":"たわみ値はスパンに比べて小さいため、mmやcmが一般的に用いられる。mを使うことはほとんどない。"},{"mode":"二級建築士試験対策","cat":"構造力学・たわみ","q":"たわみの公式における分母のEIは、荷重条件（集中荷重・等分布荷重）によって異なる値を用いる。","ans":false,"exp":"EI（曲げ剛性）はたわみの計算全てに共通する値であり、荷重条件によって変わらない。変わるのは分子の係数部分である。"},{"mode":"構造全般の学び直し（初級）","cat":"構造力学・たわみ","q":"スパンが2倍になると、集中荷重による単純梁のたわみは4倍になる。","ans":false,"exp":"集中荷重による単純梁のたわみはPL³/48EIであり、Lが2倍になるとL³は8倍になる。よってたわみは8倍になる。"},{"mode":"構造全般の学び直し（中級）","cat":"構造力学・たわみ","q":"断面二次モーメントIが大きいほど、梁のたわみは小さくなる。","ans":true,"exp":"たわみの公式の分母にEIがあるため、Iが大きいほど分母が大きくなり、たわみは小さくなる。H形鋼を梁に多用するのはIを大きくするためである。"},{"mode":"一級建築士試験対策","cat":"構造力学・座屈","q":"オイラー座屈荷重の計算式において、材料の圧縮強度は座屈荷重の大きさに直接関係する。","ans":false,"exp":"座屈荷重Pcr=π²EI/Lk²であり、材料の圧縮強度は式に含まれない。座屈は材料強度ではなく部材の剛性と細長さで決まる。"},{"mode":"一級建築士試験対策","cat":"構造力学・座屈","q":"オイラー座屈荷重はPcr=π²EI/Lk²で表され、断面二次モーメントIが大きいほど座屈荷重は大きくなる。","ans":true,"exp":"公式よりIが分子にあるため、Iが大きいほど座屈荷重は大きくなる。断面を大きくするか、H形断面などを使うことで座屈に有利な設計ができる。"},{"mode":"一級建築士試験対策","cat":"構造力学・座屈","q":"両端ピンの柱と片持ち柱では、同じ長さ・材質でも両端ピンの方が座屈荷重は大きい。","ans":true,"exp":"境界条件の違いで座屈長さLkが変わる。両端ピンの座屈長さはLk=L、片持ち柱はLk=2Lとなるため、両端ピンの方が座屈荷重は4倍大きくなる。"},{"mode":"一級建築士試験対策","cat":"構造力学・座屈","q":"座屈応力度σcrは細長比λが大きいほど大きくなる。","ans":false,"exp":"σcr=π²E/λ²であり、細長比λが大きいほど分母が大きくなり、座屈応力度は小さくなる。細長い部材ほど座屈しやすい。"},{"mode":"二級建築士試験対策","cat":"構造力学・座屈","q":"座屈とは部材が圧縮力を受けるとき、急に面外にはらみ出して耐力低下を起こす現象である。","ans":true,"exp":"座屈の定義として正しい。材料強度より遥かに小さい荷重で急激に耐力低下が起きることが特徴。"},{"mode":"二級建築士試験対策","cat":"構造力学・座屈","q":"同じ材質・強度の柱では、細長い柱よりも太い柱の方が座屈しやすい。","ans":false,"exp":"座屈は細長い部材ほど起きやすい。太い（断面が大きい）柱は断面二次モーメントIが大きくなり座屈荷重が高くなるため、座屈しにくい。"},{"mode":"二級建築士試験対策","cat":"構造力学・単純梁","q":"単純梁とは片側ピン支点、もう一方をローラー支点とした梁である。","ans":true,"exp":"単純梁の基本的な定義として正しい。片側で鉛直・水平方向に固定され、もう一方は鉛直のみ固定される。"},{"mode":"二級建築士試験対策","cat":"構造力学・単純梁","q":"単純梁（片側ピン・片側ローラー）の反力の数は合計4つである。","ans":false,"exp":"ピン支点は鉛直・水平の2つ、ローラー支点は鉛直の1つで合計3つ。反力数が3以下の梁が静定梁であり、単純梁は静定梁に分類される。"},{"mode":"二級建築士試験対策","cat":"構造力学・単純梁","q":"単純梁は静定梁であり、不静定梁よりも計算が簡単である。","ans":true,"exp":"単純梁は反力数が3以下の静定梁であり、つり合い条件だけで解けるため計算が簡単。不静定梁は別途変形適合条件が必要になる。"},{"mode":"二級建築士試験対策","cat":"構造力学・単純梁","q":"単純梁に等分布荷重が作用するとき、最大曲げモーメントは梁の中央に生じる。","ans":true,"exp":"等分布荷重が作用する単純梁では、最大曲げモーメントはM=wL²/8となり、梁の中央（スパン中央）に生じる。"},{"mode":"一級建築士試験対策","cat":"構造力学・単純梁","q":"ラーメン構造において、両端ピン支点の梁は静定構造となる。","ans":false,"exp":"ラーメン構造では両端ピン支点は不静定構造となる。片側ピン・片側ローラーが静定構造。梁単体とラーメンでは扱いが異なる点に注意。"},{"mode":"一級建築士試験対策","cat":"構造力学・単純梁","q":"単純梁と両端固定梁では、同じ荷重条件において両端固定梁のたわみの方が小さい。","ans":true,"exp":"等分布荷重作用時、単純梁のたわみは5wL⁴/384EI、両端固定梁はwL⁴/384EIであり、両端固定梁のたわみは単純梁の1/5に相当する。"},{"mode":"二級建築士試験対策","cat":"構造力学・トラス","q":"トラス構造の接合部（節点）はピン接合であるため、節点に曲げモーメントは生じない。","ans":true,"exp":"ピン接合は自由に回転できるため節点の曲げモーメントはゼロ。よってトラス部材には軸力（圧縮力・引張力）のみが生じる。"},{"mode":"二級建築士試験対策","cat":"構造力学・トラス","q":"トラス構造の部材には曲げモーメント・せん断力・軸力の3種類の断面力が同時に作用する。","ans":false,"exp":"トラス構造の節点はピン接合であるため、曲げモーメントとせん断力は概ねゼロとなり、部材には圧縮力または引張力（軸力）のみが作用する。"},{"mode":"二級建築士試験対策","cat":"構造力学・トラス","q":"トラス構造は三角形に部材を組み合わせているため、四角形に組んだ構造より変形しにくい。","ans":true,"exp":"三角形は外力に対して形状が安定する。四角形は節点がピンだと変形するが、三角形は節点がピンでも形状を保つ。これがトラス構造が強い理由。"},{"mode":"一級建築士試験対策","cat":"構造力学・トラス","q":"トラス構造は大スパン構造（体育館・ドームなど）に適した構造形式である。","ans":true,"exp":"トラス部材は軸力のみに設計するため材料効率が高く、大スパン構造に有利。体育館・ドーム・橋梁などに広く採用される。"},{"mode":"二級建築士試験対策","cat":"建物構造・種類","q":"鉄筋コンクリート造（RC造）において、コンクリートは圧縮力に強く引張力に弱い性質がある。","ans":true,"exp":"コンクリートは石に近い性質を持ち圧縮には強いが引張には弱い。そこで引張力に強い鉄筋を組み合わせることで優秀な複合材料となる。"},{"mode":"二級建築士試験対策","cat":"建物構造・種類","q":"重量鉄骨造と軽量鉄骨造の違いは鋼材の板厚であり、板厚4.5mm以下が重量鉄骨、6.0mm以上が軽量鉄骨である。","ans":false,"exp":"逆。板厚4.5mm以下が軽量鉄骨造、6.0mm以上が重量鉄骨造。重量鉄骨の方が板が厚く大きな力に耐えられる。"},{"mode":"二級建築士試験対策","cat":"建物構造・種類","q":"建物構造の違いは耐震性と直結するため、RC造は常に木造より耐震性が高い。","ans":false,"exp":"建物構造の種類だけでは耐震性は決まらない。木造でも適切に構造設計されれば鉄筋コンクリート以上の耐震性能を発揮することがある。"},{"mode":"二級建築士試験対策","cat":"材料力学・ヤング係数","q":"ヤング係数とは材料固有のかたさ（変形のしにくさ）を表す値であり、材料ごとに異なる。","ans":true,"exp":"ヤング係数は材料固有の値であり、鋼・コンクリート・木材などで異なる。石と糸のかたさが違うようにイメージすると理解しやすい。"},{"mode":"二級建築士試験対策","cat":"材料力学・ヤング係数","q":"同じ材料でも断面形状を変えればヤング係数も変化する。","ans":false,"exp":"ヤング係数は材料固有の値であり、断面形状を変えても変化しない。断面形状のかたさを表す値は断面二次モーメントである。"},{"mode":"一級建築士試験対策","cat":"材料力学・ヤング係数","q":"ヤング係数Eは応力度σとひずみεの比例定数であり、E=σ/εの関係式（フックの法則）が成り立つ。","ans":true,"exp":"フックの法則よりσ=Eεであり、E=σ/εが成り立つ。ただしこの関係は材料が弾性範囲内の場合のみ成立する。"},{"mode":"二級建築士試験対策","cat":"構造力学・静定不静定","q":"静定構造物とは力のつり合い条件式のみで支点反力を求められる構造物である。","ans":true,"exp":"力のつり合い条件式（ΣH=0、ΣV=0、ΣM=0）の3式だけで反力が求められる構造物が静定構造物。一般に反力数の合計が3以下の安定構造物が静定構造物となる。"},{"mode":"二級建築士試験対策","cat":"構造力学・静定不静定","q":"単純梁と片持ち梁はいずれも静定構造物である。","ans":true,"exp":"単純梁の反力数はピン（2）＋ローラー（1）＝3、片持ち梁の反力数は固定端で3（水平・鉛直・モーメント）。どちらも反力数が3でつり合い条件式で解ける静定構造物。"},{"mode":"一級建築士試験対策","cat":"構造力学・静定不静定","q":"不静定構造物を解くには力のつり合い条件式に加えて変形やエネルギー等の条件式も必要となる。","ans":true,"exp":"不静定構造物は反力数が3を超え未知数が方程式より多いため、変形適合条件やエネルギー法など追加の条件式が必要となる。"},{"mode":"一級建築士試験対策","cat":"構造力学・静定不静定","q":"静定構造物は支点が1つ壊れても即座に不安定構造物にはならない。","ans":false,"exp":"静定構造物は安定するために必要最小限の支点で成立している。そのため支点が1つでも壊れると即座に不安定構造物となる。これが静定構造物の弱点。"},{"mode":"二級建築士試験対策","cat":"断面の性質・断面二次モーメント","q":"断面二次モーメントとは材料の曲げにくさ（曲げる力に対する抵抗性）を表す値である。","ans":true,"exp":"断面二次モーメントが大きいほど曲げにくい。部材の「かたさ」はヤング係数（材料固有）と断面二次モーメント（断面形状）の両方で決まる。"},{"mode":"二級建築士試験対策","cat":"断面の性質・断面二次モーメント","q":"長方形断面の断面二次モーメントの公式はI=bh³/12である（bは幅、hは高さ）。","ans":true,"exp":"長方形断面のI=bh³/12は最も基本的な公式。高さhの3乗が効くため、梁を縦に使う（hを大きくする）ことが断面二次モーメントを大きくする上で効果的。"},{"mode":"二級建築士試験対策","cat":"断面の性質・断面二次モーメント","q":"円形断面の断面二次モーメントの公式はI=πd⁴/32である。","ans":false,"exp":"円形断面の断面二次モーメントはI=πd⁴/64が正しい。分母は64であることに注意。"},{"mode":"一級建築士試験対策","cat":"構造力学・オイラー座屈","q":"オイラー座屈とは細長い部材が圧縮力により横に飛び出し急激な耐力低下を起こす現象である。","ans":true,"exp":"オイラー座屈の定義として正しい。材料の圧縮強度より低い荷重で破断することが特徴で、細長い柱ほど起きやすい。"},{"mode":"一級建築士試験対策","cat":"構造力学・オイラー座屈","q":"座屈長さLkは支点間距離Lに境界条件に応じた係数αをかけた値である（Lk=α×L）。","ans":true,"exp":"境界条件（両端ピン・片持ち・両端固定など）によって係数αが変わる。両端ピンではα=1、片持ち柱ではα=2、両端固定ではα=0.5。"},{"mode":"二級建築士試験対策","cat":"材料力学・ひずみ","q":"ひずみとは変形量ΔLと元の長さLの比率であり、ε=ΔL/Lで表される。","ans":true,"exp":"ひずみ（公称ひずみ）の定義として正しい。例えば300cmの部材が1cm伸びたときのひずみはε=1/300≒0.00333となる。"},{"mode":"二級建築士試験対策","cat":"材料力学・ひずみ","q":"ひずみの単位はN/mm²（MPa）である。","ans":false,"exp":"ひずみε=ΔL/Lは長さ÷長さで単位が打ち消しあうため無次元数（単位なし）となる。N/mm²は応力度の単位。"},{"mode":"一級建築士試験対策","cat":"材料力学・ひずみ","q":"鋼などの塑性材料は塑性領域においてもσ=Eεの関係が成立する。","ans":false,"exp":"σ=Eε（フックの法則）は弾性範囲でのみ成立。塑性領域では応力とひずみの比例関係が崩れるため成立しない。降伏点を超えると応力が増えなくてもひずみが増加する。"},{"mode":"二級建築士試験対策","cat":"構造力学・ラーメン構造","q":"ラーメン構造とは柱と梁の接合部を剛接合（一体化）した構造形式である。","ans":true,"exp":"ラーメン構造の最大の特徴は接合部の剛接合。これにより水平力に対する変形が抑えられ、柱と梁だけで安定した構造が成立する。"},{"mode":"二級建築士試験対策","cat":"構造力学・ラーメン構造","q":"ラーメン構造の語源はドイツ語のRahmen（枠・額縁）に由来し、英語ではフレーム構造ともいう。","ans":true,"exp":"Rahmenはドイツ語で「枠、額縁」の意味。建物という箱を構成する「枠」をつくるイメージからラーメン構造と呼ばれる。英語ではframe structure。"},{"mode":"二級建築士試験対策","cat":"構造力学・ラーメン構造","q":"ラーメン構造の接合部はピン接合であるため節点に曲げモーメントは生じない。","ans":false,"exp":"ラーメン構造の接合部は剛接合（固定）であり節点に曲げモーメントが生じる。ピン接合で曲げモーメントがゼロになるのはトラス構造。"},{"mode":"二級建築士試験対策","cat":"断面の性質・断面係数","q":"断面係数Zは断面二次モーメントIを中立軸から縁までの距離yで除した値（Z=I/y）である。","ans":true,"exp":"断面係数Z=I/yが基本式。曲げ応力度σ=M/Zと組み合わせることで断面の曲げ応力度を計算できる。"},{"mode":"二級建築士試験対策","cat":"断面の性質・断面係数","q":"長方形断面（幅b、高さh）の断面係数はZ=bh²/6である。","ans":true,"exp":"I=bh³/12、y=h/2より Z=I/y=(bh³/12)/(h/2)=bh²/6となる。頻出公式なので確実に覚える。"},{"mode":"一級建築士試験対策","cat":"断面の性質・断面係数","q":"断面係数Zが大きいほど同じ曲げモーメントに対して曲げ応力度σは小さくなる。","ans":true,"exp":"σ=M/ZよりZが大きいほどσは小さくなる。断面係数を大きくすることで部材をより安全に設計できる。"}];
+let qs=[],cur=0,cor=0,wrg=0,ans=false;
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function loadMode(m){qs=shuffle(m==='all'?Q:Q.filter(q=>q.mode===m));cur=0;cor=0;wrg=0;ans=false;updateScore();showQ()}
+function showQ(){if(!qs.length)return;if(cur>=qs.length){qs=shuffle(qs);cur=0}const q=qs[cur];document.getElementById('cat-tag').textContent=q.cat;document.getElementById('q-num').textContent='Q'+(cur+1);document.getElementById('question-text').textContent=q.q;document.getElementById('question-card').className='question-card';document.getElementById('result-panel').className='result-panel';document.getElementById('btn-maru').disabled=false;document.getElementById('btn-batu').disabled=false;document.getElementById('btn-next').className='btn-next';ans=false;updateProg()}
+function answer(ua){if(ans)return;ans=true;const q=qs[cur];const ok=ua===q.ans;if(ok)cor++;else wrg++;document.getElementById('question-card').className='question-card '+(ok?'correct':'wrong');const rp=document.getElementById('result-panel');const rt=document.getElementById('result-title');rp.className='result-panel '+(ok?'correct':'wrong');rt.className='result-title '+(ok?'correct':'wrong');rt.innerHTML=ok?'✓ 正解！ <span class="correct-ans c">正解：'+(q.ans?'○':'×')+'</span>':'✗ 不正解 <span class="correct-ans w">正解：'+(q.ans?'○':'×')+'</span>';document.getElementById('exp-text').textContent=q.exp;document.getElementById('btn-maru').disabled=true;document.getElementById('btn-batu').disabled=true;document.getElementById('btn-next').className='btn-next show';updateScore()}
+function nextQuestion(){cur++;showQ()}
+function updateScore(){const t=cor+wrg;const a=t>0?Math.round(cor/t*100):0;const as=t>0?a+'%':'--%';['hdr-c','sc-c'].forEach(id=>document.getElementById(id).textContent=cor);['hdr-w','sc-w'].forEach(id=>document.getElementById(id).textContent=wrg);document.getElementById('sc-t').textContent=t;document.getElementById('sc-a').textContent=as;document.getElementById('acc-val').textContent=as;document.getElementById('acc-fill').style.width=(t>0?a:0)+'%'}
+function updateProg(){const t=cor+wrg;const p=qs.length>0?Math.round(cur/qs.length*100):0;const a=t>0?Math.round(cor/t*100):'--';document.getElementById('prog-text').textContent=cur+' / '+qs.length+'問';document.getElementById('prog-acc').textContent='正答率 '+a+'%';document.getElementById('prog-fill').style.width=p+'%'}
+document.querySelectorAll('.mode-tab').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.mode-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadMode(b.dataset.mode)})});
+loadMode('all');
+</script>
+</body>
+</html>
