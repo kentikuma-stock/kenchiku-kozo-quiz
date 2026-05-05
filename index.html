@@ -111,6 +111,30 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .appeal-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.55;color:rgba(255,255,255,.85)}
 .appeal-dot{width:6px;height:6px;min-width:6px;background:var(--orange);border-radius:50%;margin-top:5px}
 sup{font-size:0.75em;vertical-align:super;line-height:0}
+/* 学習導線 */
+.source-link-area{margin-top:12px;padding:12px;background:var(--navy-light);border-radius:6px;border-left:3px solid var(--navy)}
+.source-link-label{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase}
+.source-link-desc{font-size:12px;color:var(--text-muted);margin-bottom:8px}
+.source-link-btn{display:inline-block;padding:7px 14px;background:var(--navy);color:white;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;transition:background .15s}
+.source-link-btn:hover{background:var(--navy-dark)}
+.source-link-title{font-size:11px;color:var(--text-muted);margin-top:5px}
+.material-cta{margin-top:10px;padding:12px 14px;background:#f8f5ff;border:1px solid #d8d0f0;border-radius:6px}
+.material-cta-label{font-size:11px;font-weight:700;color:#5b4aaa;margin-bottom:4px}
+.material-cta-desc{font-size:12px;color:var(--text-muted);line-height:1.65;margin-bottom:8px}
+.material-cta-btn{display:inline-block;padding:7px 14px;background:#5b4aaa;color:white;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;transition:background .15s}
+.material-cta-btn:hover{background:#4a3a99}
+.material-cta-milestone{display:none;margin:0 20px 12px;padding:12px 14px;background:#f8f5ff;border:1px solid #d8d0f0;border-radius:6px}
+.weak-review-inner{padding:12px 14px}
+.weak-review-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.weak-review-list{display:flex;flex-direction:column;gap:6px}
+.weak-review-item{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--navy-light);border-radius:5px;text-decoration:none;font-size:12px;transition:background .15s}
+.weak-review-item:hover{background:#d0dcef}
+.weak-review-cat{color:var(--navy);font-weight:500}
+.weak-review-cnt{color:var(--red);font-size:11px;font-weight:700;flex-shrink:0;margin-left:6px}
+.page-bottom-cta{max-width:900px;margin:0 auto 24px;padding:0 16px}
+.page-bottom-cta-inner{padding:16px;background:#f8f5ff;border:1px solid #d8d0f0;border-radius:var(--radius)}
+.page-bottom-cta-title{font-size:14px;font-weight:700;color:#5b4aaa;margin-bottom:6px}
+.page-bottom-cta-desc{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:10px}
 /* SEO用静的コンテンツ */
 .seo-section{max-width:900px;margin:0 auto;padding:24px 16px;width:100%}
 .seo-section h2{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--orange)}
@@ -199,6 +223,22 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
       <div class="result-panel" id="result-panel">
         <div class="result-title" id="result-title"></div>
         <div class="exp-text" id="exp-text"></div>
+        <div id="source-link-area" style="display:none" class="source-link-area">
+          <div class="source-link-label">もっと詳しく学ぶ</div>
+          <p class="source-link-desc">この問題の元になった解説記事を読む</p>
+          <a id="source-link-btn" href="#" target="_blank" rel="noopener noreferrer" class="source-link-btn">このテーマを詳しく読む</a>
+          <p id="source-link-title" class="source-link-title" style="display:none"></p>
+        </div>
+        <div id="material-cta-wrong" style="display:none" class="material-cta">
+          <div class="material-cta-label">このテーマで迷った方へ</div>
+          <p class="material-cta-desc">用語の意味や図のイメージを整理すると、かなり理解しやすくなります。</p>
+          <a id="material-cta-wrong-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットで復習する</a>
+        </div>
+      </div>
+      <div id="material-cta-10" class="material-cta-milestone">
+        <div class="material-cta-label">ここまで解いた方へ</div>
+        <p class="material-cta-desc">○×問題で迷ったテーマは、用語の意味や図のイメージを整理すると理解しやすくなります。体系的に復習したい方は、用語集・図解集セットもご利用ください。</p>
+        <a id="material-cta-10-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットを見る</a>
       </div>
       <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ →</button>
     </div>
@@ -226,6 +266,13 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
           <div class="accuracy-label"><span>正答率</span><span class="accuracy-val" id="acc-val">--%</span></div>
           <div class="accuracy-bar"><div class="accuracy-fill" id="acc-fill" style="width:0%"></div></div>
         </div>
+      </div>
+    </div>
+    <div class="side-card" id="weak-review" style="display:none">
+      <div class="side-card-header">弱点復習</div>
+      <div class="weak-review-inner">
+        <div class="weak-review-title">間違いが多いテーマの解説記事</div>
+        <div class="weak-review-list" id="weak-review-list"></div>
       </div>
     </div>
   </div>
@@ -371,6 +418,13 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
   </div>
 </div>
 
+<div class="page-bottom-cta">
+  <div class="page-bottom-cta-inner">
+    <div class="page-bottom-cta-title">もっと体系的に整理したい方へ</div>
+    <p class="page-bottom-cta-desc">○×問題は理解の確認用です。用語の意味や図のイメージをまとめて確認したい方は、用語集・図解集セットもご利用ください。</p>
+    <a id="page-bottom-cta-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットを見る</a>
+  </div>
+</div>
 <footer>
   問題は <a href="https://kentiku-kouzou.jp/" target="_blank">kentiku-kouzou.jp</a> の記事をもとに作成 | ゼロ所長の構造力学問題集
 </footer>
@@ -550,11 +604,29 @@ const Q=[{"mode": "一級建築士試験対策", "cat": "構造力学・たわ�
 {"mode": "一級建築士試験対策", "cat": "RC構造・混和材料", "q": "AE剤はコンクリート中に微細な気泡（エントレインドエア）を均一に分散させる混和剤で、主成分は界面活性剤である。", "ans": true, "exp": "AE剤（Air-Entraining剤）は界面活性剤を主成分とし、コンクリート中に独立した微細気泡を生成する。ワーカビリティの改善と凍結融解抵抗性の向上が主な目的。"},
 {"mode": "一級建築士試験対策", "cat": "RC構造・混和材料", "q": "AE剤を使用するとコンクリートのワーカビリティが向上し、凍結融解に対する抵抗性も改善される。", "ans": true, "exp": "気泡がボールベアリング効果でコンクリートの流動性を高めワーカビリティを改善。また、凍結時に水が膨張してもその圧力を気泡が吸収するため凍結融解抵抗性が向上する。"},
 {"mode": "一級建築士試験対策", "cat": "RC構造・混和材料", "q": "AE剤による空気量（エントレインドエア）が多いほどコンクリートの圧縮強度は高くなる。", "ans": false, "exp": "空気量が増えるとコンクリートの圧縮強度は低下する。一般に空気量が1%増加するごとに圧縮強度が4?5%程度低下するとされる。AE剤使用量は空気量4?7%程度が標準的で、過剰使用は強度低下を招く。"}];
+const MATERIAL_URL="https://kentiku-kouzou.jp/zukaitoyougo_lp/lp.html";
+const CAT_ARTICLE={
+  "断面の性質・断面二次モーメント":{title:"断面二次モーメントとは？",url:"https://kentiku-kouzou.jp/danmen2zi.html"},
+  "断面の性質・断面係数":{title:"断面係数とは？",url:"https://kentiku-kouzou.jp/struc-danmenkeisuu.html"},
+  "構造力学・曲げモーメント":{title:"曲げモーメントとは？",url:"https://kentiku-kouzou.jp/struc-magemoment.html"},
+  "応力・せん断力":{title:"せん断力とせん断応力の違いは？",url:"https://kentiku-kouzou.jp/struc-sendanouryokusendanryokutigai.html"},
+  "構造力学・座屈":{title:"座屈とは？座屈荷重の基礎知識",url:"https://kentiku-kouzou.jp/struc-zakututoha.html"},
+  "構造力学・オイラー座屈":{title:"座屈とは？座屈荷重の基礎知識",url:"https://kentiku-kouzou.jp/struc-zakututoha.html"},
+  "構造力学・たわみ":{title:"たわみとは？意味、求め方、公式",url:"https://kentiku-kouzou.jp/struc-harinotawamikisoyougo.html"},
+  "構造力学・トラス":{title:"トラス構造とは？メリット、計算法",url:"https://kentiku-kouzou.jp/struc-torasu.html"},
+  "構造力学・ラーメン構造":{title:"ラーメン構造とは？意味、特徴",url:"https://kentiku-kouzou.jp/struc-ramenkouzoubutu.html"},
+  "応力・応力度":{title:"応力度の基礎知識、種類と応力との違い",url:"https://kentiku-kouzou.jp/struc-ouryokudo.html"},
+  "鉄骨構造・高力ボルト":{title:"高力ボルトの種類と規格、特徴",url:"https://kentiku-kouzou.jp/koukouzou-kouryokuboruto.html"},
+  "RC構造・かぶり":{title:"鉄筋のかぶりとは？考え方、厚さ、基準",url:"https://kentiku-kouzou.jp/struc-kaburi.html"},
+  "構造計画・計算ルート":{title:"構造計算ルートとは何か？",url:"https://kentiku-kouzou.jp/struc-ruto.html"}
+};
 let qs=[],cur=0,cor=0,wrg=0,ans=false;
+let catWrongMap={},shownMaterialCTA=false;
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function loadTab(tab){
   qs=shuffle(tab==="all"?Q:Q.filter(q=>CAT_TAB[q.cat]===tab));
-  cur=0;cor=0;wrg=0;ans=false;updateScore();showQ();
+  cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;
+  updateScore();showQ();
 }
 function showQ(){
   if(!qs.length){document.getElementById("question-text").innerHTML="この分野の問題は準備中です";return;}
@@ -568,12 +640,15 @@ function showQ(){
   document.getElementById("btn-maru").disabled=false;
   document.getElementById("btn-batu").disabled=false;
   document.getElementById("btn-next").className="btn-next";
+  document.getElementById("source-link-area").style.display="none";
+  document.getElementById("material-cta-wrong").style.display="none";
+  document.getElementById("material-cta-10").style.display="none";
   ans=false;updateProg();
 }
 function answer(ua){
   if(ans)return;ans=true;
   const q=qs[cur];const ok=ua===q.ans;
-  if(ok)cor++;else wrg++;
+  if(ok)cor++;else{wrg++;catWrongMap[q.cat]=(catWrongMap[q.cat]||0)+1;}
   document.getElementById("question-card").className="question-card "+(ok?"correct":"wrong");
   const rp=document.getElementById("result-panel");const rt=document.getElementById("result-title");
   rp.className="result-panel "+(ok?"correct":"wrong");
@@ -583,9 +658,42 @@ function answer(ua){
   document.getElementById("btn-maru").disabled=true;
   document.getElementById("btn-batu").disabled=true;
   document.getElementById("btn-next").className="btn-next show";
-  updateScore();
+  // 元記事リンク
+  if(q.sourceUrl){
+    document.getElementById("source-link-area").style.display="block";
+    document.getElementById("source-link-btn").href=q.sourceUrl;
+    const titleEl=document.getElementById("source-link-title");
+    if(q.sourceTitle){titleEl.textContent=q.sourceTitle;titleEl.style.display="block";}
+    else titleEl.style.display="none";
+  }
+  // 不正解時のみ教材CTA表示
+  if(!ok){
+    document.getElementById("material-cta-wrong").style.display="block";
+    document.getElementById("material-cta-wrong-btn").href=MATERIAL_URL;
+  }
+  // 10問達成時（一度だけ）
+  const total=cor+wrg;
+  if(total>=10&&!shownMaterialCTA){
+    shownMaterialCTA=true;
+    document.getElementById("material-cta-10").style.display="block";
+    document.getElementById("material-cta-10-btn").href=MATERIAL_URL;
+  }
+  updateScore();updateWeakReview();
 }
 function nextQuestion(){cur++;showQ();}
+function updateWeakReview(){
+  const el=document.getElementById("weak-review");
+  const cats=Object.entries(catWrongMap)
+    .filter(([cat])=>CAT_ARTICLE[cat])
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,3);
+  if(!cats.length){el.style.display="none";return;}
+  el.style.display="block";
+  document.getElementById("weak-review-list").innerHTML=cats.map(([cat,cnt])=>{
+    const art=CAT_ARTICLE[cat];
+    return '<a href="'+art.url+'" target="_blank" rel="noopener noreferrer" class="weak-review-item"><span class="weak-review-cat">'+cat+'</span><span class="weak-review-cnt">'+cnt+'問ミス</span></a>';
+  }).join("");
+}
 function updateScore(){
   const t=cor+wrg;const a=t>0?Math.round(cor/t*100):0;const as=t>0?a+"%":"--%";
   ["hdr-c","sc-c"].forEach(id=>document.getElementById(id).textContent=cor);
@@ -615,6 +723,7 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
   });
 });
 updateCounts();loadTab("all");
+document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
 </html>
