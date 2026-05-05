@@ -658,12 +658,14 @@ function answer(ua){
   document.getElementById("btn-maru").disabled=true;
   document.getElementById("btn-batu").disabled=true;
   document.getElementById("btn-next").className="btn-next show";
-  // 元記事リンク
-  if(q.sourceUrl){
+  // 元記事リンク（問題個別のsourceUrl優先、なければCAT_ARTICLEのカテゴリ記事）
+  const artUrl=q.sourceUrl||(CAT_ARTICLE[q.cat]&&CAT_ARTICLE[q.cat].url)||"";
+  const artTitle=q.sourceTitle||(CAT_ARTICLE[q.cat]&&CAT_ARTICLE[q.cat].title)||"";
+  if(artUrl){
     document.getElementById("source-link-area").style.display="block";
-    document.getElementById("source-link-btn").href=q.sourceUrl;
+    document.getElementById("source-link-btn").href=artUrl;
     const titleEl=document.getElementById("source-link-title");
-    if(q.sourceTitle){titleEl.textContent=q.sourceTitle;titleEl.style.display="block";}
+    if(artTitle){titleEl.textContent=artTitle;titleEl.style.display="block";}
     else titleEl.style.display="none";
   }
   // 不正解時のみ教材CTA表示
