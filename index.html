@@ -134,6 +134,11 @@ sup{font-size:0.75em;vertical-align:super;line-height:0}
 .weak-review-item:hover{background:#d0dcef}
 .weak-review-cat{color:var(--navy);font-weight:500}
 .weak-review-cnt{color:var(--red);font-size:11px;font-weight:700;flex-shrink:0;margin-left:6px}
+.reset-btn{margin-top:10px;width:100%;padding:7px;background:transparent;border:1px solid var(--border);border-radius:5px;font-family:"Noto Sans JP",sans-serif;font-size:11px;color:var(--text-muted);cursor:pointer;transition:all .15s}
+.reset-btn:hover{background:var(--red-light);border-color:var(--red);color:var(--red)}
+.ls-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
+.ls-row-label{color:var(--text-muted)}
+.ls-row-val{font-weight:700;color:var(--navy);font-family:"DM Mono",monospace}
 .page-bottom-cta{max-width:900px;margin:0 auto 24px;padding:0 16px}
 .page-bottom-cta-inner{padding:16px;background:#f8f5ff;border:1px solid #d8d0f0;border-radius:var(--radius)}
 .page-bottom-cta-title{font-size:14px;font-weight:700;color:#5b4aaa;margin-bottom:6px}
@@ -276,10 +281,19 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
       </div>
     </div>
     <div class="side-card" id="weak-review" style="display:none">
-      <div class="side-card-header">弱点復習</div>
+      <div class="side-card-header">苦手カテゴリ TOP3</div>
       <div class="weak-review-inner">
-        <div class="weak-review-title">間違いが多いテーマの解説記事</div>
+        <div class="weak-review-title">間違いが多いテーマの解説記事（累計）</div>
         <div class="weak-review-list" id="weak-review-list"></div>
+      </div>
+    </div>
+    <div class="side-card" id="ls-card" style="display:none">
+      <div class="side-card-header">  累計記録</div>
+      <div class="side-card-body">
+        <div class="ls-row"><span class="ls-row-label">累計回答数</span><span class="ls-row-val" id="ls-total">0</span></div>
+        <div class="ls-row"><span class="ls-row-label">累計正解数</span><span class="ls-row-val" id="ls-cor">0</span></div>
+        <div class="ls-row"><span class="ls-row-label">累計正答率</span><span class="ls-row-val" id="ls-acc">--%</span></div>
+        <button class="reset-btn" onclick="resetLS()">記録をリセット</button>
       </div>
     </div>
   </div>
@@ -787,6 +801,20 @@ const CAT_ARTICLE={
 };
 let qs=[],cur=0,cor=0,wrg=0,ans=false;
 let catWrongMap={},shownMaterialCTA=false;
+const LS_KEY="kozo-quiz-v1";
+function loadLS(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"null");}catch(e){return null;}}
+function saveLS(d){try{localStorage.setItem(LS_KEY,JSON.stringify(d));}catch(e){}}
+function resetLS(){if(!confirm("累計記録をリセットしますか？"))return;localStorage.removeItem(LS_KEY);updateLSDisplay();updateWeakReview();}
+function updateLSDisplay(){
+  const ls=loadLS()||{cor:0,wrg:0};const t=(ls.cor||0)+(ls.wrg||0);
+  const card=document.getElementById("ls-card");
+  if(t>0){
+    card.style.display="block";
+    document.getElementById("ls-total").textContent=t;
+    document.getElementById("ls-cor").textContent=ls.cor||0;
+    document.getElementById("ls-acc").textContent=Math.round((ls.cor||0)/t*100)+"%";
+  }else{card.style.display="none";}
+}
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function loadTab(tab){
   qs=shuffle(tab==="all"?Q:Q.filter(q=>CAT_TAB[q.cat]===tab));
@@ -815,6 +843,9 @@ function answer(ua){
   if(ans)return;ans=true;
   const q=qs[cur];const ok=ua===q.ans;
   if(ok)cor++;else{wrg++;catWrongMap[q.cat]=(catWrongMap[q.cat]||0)+1;}
+  const _ls=loadLS()||{cor:0,wrg:0,catWrongMap:{}};
+  if(ok){_ls.cor=(_ls.cor||0)+1;}else{_ls.wrg=(_ls.wrg||0)+1;_ls.catWrongMap=_ls.catWrongMap||{};_ls.catWrongMap[q.cat]=(_ls.catWrongMap[q.cat]||0)+1;}
+  saveLS(_ls);
   document.getElementById("question-card").className="question-card "+(ok?"correct":"wrong");
   const rp=document.getElementById("result-panel");const rt=document.getElementById("result-title");
   rp.className="result-panel "+(ok?"correct":"wrong");
@@ -847,12 +878,13 @@ function answer(ua){
     document.getElementById("material-cta-10").style.display="block";
     document.getElementById("material-cta-10-btn").href=MATERIAL_URL;
   }
-  updateScore();updateWeakReview();
+  updateScore();updateWeakReview();updateLSDisplay();
 }
 function nextQuestion(){cur++;showQ();}
 function updateWeakReview(){
   const el=document.getElementById("weak-review");
-  const cats=Object.entries(catWrongMap)
+  const ls=loadLS()||{catWrongMap:{}};
+  const cats=Object.entries(ls.catWrongMap||{})
     .filter(([cat])=>CAT_ARTICLE[cat])
     .sort((a,b)=>b[1]-a[1])
     .slice(0,3);
@@ -894,7 +926,7 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
     b.classList.add("active");loadTab(b.dataset.tab);
   });
 });
-updateCounts();loadTab("all");
+updateCounts();loadTab("all");updateLSDisplay();updateWeakReview();
 document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
