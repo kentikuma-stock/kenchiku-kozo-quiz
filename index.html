@@ -90,6 +90,9 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .btn-next{display:none;width:calc(100% - 40px);margin:0 20px 20px;padding:13px;background:var(--navy);color:white;border:none;border-radius:var(--radius);font-family:"Noto Sans JP",sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s}
 .btn-next.show{display:block}
 .btn-next:hover{background:var(--navy-dark);transform:translateY(-1px)}
+.btn-x-share{display:none;width:calc(100% - 40px);margin:0 20px 10px;padding:11px;background:#000;color:white;border:none;border-radius:var(--radius);font-family:"Noto Sans JP",sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:all .15s;letter-spacing:.5px}
+.btn-x-share.show{display:block}
+.btn-x-share:hover{background:#222;transform:translateY(-1px)}
 .sidebar{display:flex;flex-direction:column;gap:14px}
 .side-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .side-card-header{background:var(--navy);padding:10px 14px;font-size:12px;font-weight:700;color:white}
@@ -243,6 +246,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <p class="material-cta-desc">○×問題で迷ったテーマは、用語の意味や図のイメージを整理すると理解しやすくなります。体系的に復習したい方は、用語集・図解集セットもご利用ください。</p>
         <a id="material-cta-10-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットを見る</a>
       </div>
+      <a class="btn-x-share" id="btn-x-share" href="#" target="_blank" rel="noopener noreferrer">  スコアをポスト</a>
       <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ →</button>
     </div>
   </div>
@@ -802,6 +806,7 @@ function showQ(){
   document.getElementById("btn-batu").disabled=false;
   document.getElementById("btn-next").className="btn-next";
   document.getElementById("source-link-area").style.display="none";
+  document.getElementById("btn-x-share").className="btn-x-share";
   document.getElementById("material-cta-wrong").style.display="none";
   document.getElementById("material-cta-10").style.display="none";
   ans=false;updateProg();
@@ -819,6 +824,7 @@ function answer(ua){
   document.getElementById("btn-maru").disabled=true;
   document.getElementById("btn-batu").disabled=true;
   document.getElementById("btn-next").className="btn-next show";
+    const _tot=cor+wrg;const _tw=encodeURIComponent("【構造力学クイズ】"+_tot+"問中"+cor+"問正解！\n建築構造の○×クイズで腕試し。\n#構造力学 #建築学生 #一級建築士\nhttps://kenchiku-kozo-quiz.vercel.app/");document.getElementById("btn-x-share").href="https://x.com/intent/tweet?text="+_tw;document.getElementById("btn-x-share").className="btn-x-share show";
   // 元記事リンク（問題個別のsourceUrl優先、なければCAT_ARTICLEのカテゴリ記事）
   const artUrl=q.sourceUrl||(CAT_ARTICLE[q.cat]&&CAT_ARTICLE[q.cat].url)||"";
   const artTitle=q.sourceTitle||(CAT_ARTICLE[q.cat]&&CAT_ARTICLE[q.cat].title)||"";
