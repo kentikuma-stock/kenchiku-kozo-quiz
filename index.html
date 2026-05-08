@@ -98,9 +98,9 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .btn-next{display:none;width:calc(100% - 40px);margin:0 20px 20px;padding:13px;background:var(--navy);color:white;border:none;border-radius:var(--radius);font-family:"Noto Sans JP",sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s}
 .btn-next.show{display:block}
 .btn-next:hover{background:var(--navy-dark);transform:translateY(-1px)}
-.btn-x-share{display:none;width:36px;height:36px;background:#000;color:white;border:none;border-radius:50%;font-size:15px;cursor:pointer;text-decoration:none;text-align:center;line-height:36px;transition:all .15s;margin:0 20px 8px auto}
-.btn-x-share.show{display:block}
-.btn-x-share:hover{background:#333;transform:scale(1.1)}
+.btn-x-share{display:none;width:auto;padding:6px 14px;background:#000;color:white;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;line-height:1;transition:all .15s;margin:4px auto 16px auto;align-items:center;gap:5px}
+.btn-x-share.show{display:inline-flex}
+.btn-x-share:hover{background:#333;transform:scale(1.05)}
 .sidebar{display:flex;flex-direction:column;gap:14px}
 .side-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .side-card-header{background:var(--navy);padding:10px 14px;font-size:12px;font-weight:700;color:white}
@@ -260,8 +260,8 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <p class="material-cta-desc">○×問題で迷ったテーマは、用語の意味や図のイメージを整理すると理解しやすくなります。体系的に復習したい方は、用語集・図解集セットもご利用ください。</p>
         <a id="material-cta-10-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットを見る</a>
       </div>
-      <a class="btn-x-share" id="btn-x-share" href="#" target="_blank" rel="noopener noreferrer"> </a>
       <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ →</button>
+      <a class="btn-x-share" id="btn-x-share" href="#" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> シェア</a>
     </div>
   </div>
   <div class="sidebar">
