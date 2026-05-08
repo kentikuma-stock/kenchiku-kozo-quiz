@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ゼロ所長の構造力学問題集 | 断面二次モーメント・座屈・曲げモーメント・たわみを無料クイズで確認</title>
-<meta name="description" content="構造力学・断面二次モーメント・座屈・曲げモーメント・たわみ・RC構造・鉄骨構造・木質構造・耐震設計など1115問を無料○×クイズで確認。一級・二級建築士対策に。過去問の丸暗記ではなく原理から理解できる問題を厳選。">
+<meta name="description" content="構造力学・断面二次モーメント・座屈・曲げモーメント・たわみ・RC構造・鉄骨構造・木質構造・耐震設計など1214問を無料○×クイズで確認。一級・二級建築士対策に。過去問の丸暗記ではなく原理から理解できる問題を厳選。">
 <meta name="keywords" content="構造力学,問題集,クイズ,断面二次モーメント,座屈,曲げモーメント,たわみ,一級建築士,二級建築士,建築構造,構造計算">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6DSNC25V"></script>
@@ -108,7 +108,7 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .daily-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
 .daily-label{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.5px}
 .daily-card.done .daily-label{color:var(--green)}
-.streak-chip{font-size:11px;font-weight:700;color:var(--orange);background:rgba(240,125,0,.12);border-radius:12px;padding:2px 8px}
+.streak-chip{font-size:12px;font-weight:900;color:white;background:var(--orange);border-radius:12px;padding:4px 12px;box-shadow:0 2px 6px rgba(240,125,0,.35)}
 .daily-cat{font-size:12px;color:var(--text-muted);margin-bottom:5px}
 .daily-action{font-size:12px;font-weight:700;color:var(--navy)}
 .daily-card.done .daily-action{color:var(--green)}
@@ -234,7 +234,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
   <div class="quiz-area">
     <div class="daily-card" id="daily-card" onclick="startDaily()">
       <div class="daily-header">
-        <span class="daily-label" id="daily-label">  今日の1問</span>
+        <span class="daily-label" id="daily-label">今日の1問</span>
         <span class="streak-chip" id="streak-chip"></span>
       </div>
       <div class="daily-cat" id="daily-cat"></div>
@@ -294,7 +294,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
       </div>
     </div>
     <div class="side-card">
-      <div class="side-card-header">  現在のスコア</div>
+      <div class="side-card-header">現在のスコア</div>
       <div class="side-card-body">
         <div class="stat-grid">
           <div class="stat-item"><div class="stat-num c" id="sc-c">0</div><div class="stat-label">正解</div></div>
@@ -316,7 +316,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
       </div>
     </div>
     <div class="side-card" id="ls-card" style="display:none">
-      <div class="side-card-header">  累計記録</div>
+      <div class="side-card-header">累計記録</div>
       <div class="side-card-body">
         <div class="ls-row"><span class="ls-row-label">累計回答数</span><span class="ls-row-val" id="ls-total">0</span></div>
         <div class="ls-row"><span class="ls-row-label">累計正解数</span><span class="ls-row-val" id="ls-cor">0</span></div>
@@ -330,7 +330,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 <!-- SEO・AEO用静的コンテンツ -->
 <div class="seo-section">
   <h2>構造力学 問題集・クイズの収録テーマ一覧</h2>
-  <p>建築構造の主要テーマ全181カテゴリ・1115問を収録。一級建築士・二級建築士の学科試験（構造）に頻出のテーマを網羅しています。</p>
+  <p>建築構造の主要テーマ全192カテゴリ・1214問を収録。一級建築士・二級建築士の学科試験（構造）に頻出のテーマを網羅しています。</p>
   <div class="theme-grid">
     <a href="#" class="theme-tag" onclick="startCat('構造力学・たわみ');return false;">構造力学・たわみ</a>
     <a href="#" class="theme-tag" onclick="startCat('構造力学・座屈');return false;">構造力学・座屈</a>
@@ -935,7 +935,7 @@ function checkStreak(){
     ls.lastVisit=today;ls.streak=streak;saveLS(ls);
   }
   const chip=document.getElementById("streak-chip");
-  chip.textContent=streak>=2?"  "+streak+"日連続":"  1日目";
+  chip.textContent=streak>=2?streak+"日連続":"1日目";
   return streak;
 }
 function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
