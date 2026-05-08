@@ -108,6 +108,13 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .zero-speech::before{content:'';position:absolute;left:-9px;top:10px;border-width:5px 9px 5px 0;border-style:solid;border-color:transparent #c7ddf5 transparent transparent}
 .zero-speech::after{content:'';position:absolute;left:-7px;top:11px;border-width:4px 7px 4px 0;border-style:solid;border-color:transparent #fff transparent transparent}
 .zero-speech-name{font-size:10px;font-weight:700;color:#1a4a8a;margin-bottom:5px;letter-spacing:.5px}
+.zero-intro-bar{display:flex;align-items:center;gap:14px;background:#f0f7ff;border:1px solid #c7ddf5;border-radius:10px;padding:14px 18px;margin:0 auto 16px;max-width:860px}
+.zero-intro-icon{width:60px;height:60px;border-radius:50%;border:2px solid #c7ddf5;object-fit:cover;flex-shrink:0}
+.zero-intro-body{flex:1}
+.zero-intro-name{font-size:12px;font-weight:700;color:#1a4a8a;margin-bottom:3px}
+.zero-intro-bio{font-size:12px;color:#374151;line-height:1.6}
+.zero-intro-note{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#41c9b4;text-decoration:none}
+.zero-intro-note:hover{text-decoration:underline}
 .zero-sidebar-block{text-align:center;padding:16px 0 8px}
 .zero-sidebar-block img{width:76px;height:76px;border-radius:50%;border:2px solid #c7ddf5;object-fit:cover}
 .zero-sidebar-name{font-size:11px;font-weight:700;color:#1a4a8a;margin-top:5px}
@@ -330,6 +337,16 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <button class="ex-btn" onclick="loadExamCheck()">試験前チェック30問</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ゼロ所長紹介（常時表示） -->
+<div class="zero-intro-bar">
+  <img src="zero-shocho.png" alt="ゼロ所長" class="zero-intro-icon">
+  <div class="zero-intro-body">
+    <div class="zero-intro-name">ゼロ所長</div>
+    <div class="zero-intro-bio">難しい建築構造を、専門用語を使わずにわかりやすく解説。一級・二級建築士試験の構造が苦手な方を応援しています。</div>
+    <a href="https://note.com/0karakouzou" target="_blank" rel="noopener noreferrer" class="zero-intro-note">noteで解説記事を読む →</a>
   </div>
 </div>
 
