@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ゼロ所長の構造力学問題集 | 断面二次モーメント・座屈・曲げモーメント・たわみを無料クイズで確認</title>
-<meta name="description" content="構造力学・断面二次モーメント・座屈・曲げモーメント・たわみ・RC構造・鉄骨構造・木質構造・耐震設計など1214問を無料○×クイズで確認。一級・二級建築士対策に。過去問の丸暗記ではなく原理から理解できる問題を厳選。">
+<title>一級建築士・二級建築士 構造対策 WEB問題集｜構造力学・RC構造・鉄骨構造を無料で確認</title>
+<meta name="description" content="一級建築士・二級建築士の構造対策に使える無料WEB問題集です。構造力学、RC構造、鉄骨構造、基礎構造、耐震設計、建築材料を○×問題で確認できます。登録不要・スマホ対応。施工分野も順次追加予定です。">
 <meta name="keywords" content="構造力学,問題集,クイズ,断面二次モーメント,座屈,曲げモーメント,たわみ,一級建築士,二級建築士,建築構造,構造計算">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6DSNC25V"></script>
@@ -18,7 +18,7 @@
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "ゼロ所長の構造力学問題集",
+  "name": "一級建築士・二級建築士 構造対策 WEB問題集",
   "description": "構造力学・断面二次モーメント・座屈・曲げモーメント・たわみなど建築構造の主要テーマを○×クイズで確認できる無料学習サービス",
   "url": "https://kenchiku-kozo-quiz.vercel.app",
   "educationalLevel": "一級建築士・二級建築士",
@@ -194,6 +194,54 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
   .btn-next{width:calc(100% - 32px);margin:0 16px 16px}
   .seo-section{padding:16px 12px}
 }
+/* ========== Phase 1: 目次型トップページ ========== */
+.index-section{background:var(--white);border-bottom:1px solid var(--border);padding:20px 16px 24px}
+.index-inner{max-width:900px;margin:0 auto}
+.index-header{margin-bottom:16px}
+.index-header h2{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.index-header p{font-size:12px;color:var(--text-muted)}
+.index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.index-card{background:var(--gray);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
+.index-card:hover:not(.coming-soon){border-color:var(--navy);background:var(--navy-light)}
+.index-card.coming-soon{opacity:.6}
+.index-card-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.5px}
+.index-card-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.4}
+.index-card-items{font-size:11px;color:var(--text-muted);line-height:1.6}
+.index-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.index-card-count{font-size:11px;font-weight:700;color:var(--navy);font-family:"DM Mono",monospace}
+.index-card-count.zero{color:var(--text-muted)}
+.index-card-btn{font-size:11px;font-weight:700;color:var(--navy);background:none;border:1px solid var(--navy);border-radius:4px;padding:3px 10px;cursor:pointer;font-family:"Noto Sans JP",sans-serif;transition:all .15s}
+.index-card-btn:hover{background:var(--navy);color:white}
+.index-card.coming-soon .index-card-btn{color:var(--text-muted);border-color:var(--border);cursor:default}
+.index-card.coming-soon .index-card-btn:hover{background:none;color:var(--text-muted)}
+/* 今日の1問 + まとめて演習セクション */
+.daily-ex-section{background:var(--gray);border-bottom:1px solid var(--border);padding:16px}
+.daily-ex-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.daily-small{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.daily-small:hover{border-color:var(--orange)}
+.daily-small.done{border-left-color:var(--green)}
+.daily-small-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.5px;margin-bottom:4px}
+.daily-small.done .daily-small-label{color:var(--green)}
+.daily-small-cat{font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.daily-small-q{font-size:13px;font-weight:500;line-height:1.6;color:var(--text);margin-bottom:8px}
+.daily-small-action{font-size:12px;font-weight:700;color:var(--navy)}
+.daily-small.done .daily-small-action{color:var(--green)}
+.ex-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.ex-card-label{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.5px;margin-bottom:8px}
+.ex-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ex-btn{padding:8px 6px;border-radius:6px;border:1px solid var(--navy);background:white;color:var(--navy);font-family:"Noto Sans JP",sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;line-height:1.4;text-align:center}
+.ex-btn:hover{background:var(--navy-light)}
+.ex-btn.primary{background:var(--navy);color:white}
+.ex-btn.primary:hover{background:var(--navy-dark)}
+/* 問題演習エリア（初期非表示） */
+#question-area{display:none}
+@media(max-width:680px){
+  .index-grid{grid-template-columns:1fr 1fr}
+  .daily-ex-inner{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .index-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -202,8 +250,8 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
     <a class="logo" href="#">
       <div class="logo-icon">0</div>
       <div>
-        <div class="logo-text">構造対策WEB問題集</div>
-        <div class="logo-sub">一級建築士・二級建築士｜全1214問｜無料</div>
+        <div class="logo-text">構造対策 WEB問題集</div>
+        <div class="logo-sub">一級・二級建築士｜全1214問｜登録不要・無料</div>
       </div>
     </a>
     <div class="header-right">
@@ -218,16 +266,44 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 </header>
 
 
-<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士　構造対策WEB問題集</h1>
-<div class="action-area">
-  <div class="action-inner">
-    <button class="action-btn primary" onclick="loadDailyTen()">今日の10問を解く</button>
-    <button class="action-btn" onclick="loadRandom()">ランダム10問</button>
-    <button class="action-btn" onclick="loadWeakReview()">間違えた問題を復習</button>
-    <button class="action-btn" onclick="loadExamCheck()">試験前チェック30問</button>
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士 構造対策 WEB問題集</h1>
+
+<!-- 目次セクション（ファーストビュー） -->
+<section class="index-section">
+  <div class="index-inner">
+    <div class="index-header">
+      <h2>構造・施工の問題集 - 分野を選んで対策をはじめる</h2>
+      <p>全1214問・登録不要・無料｜構造力学・RC構造・鉄骨構造・基礎・材料をスキマ時間で確認</p>
+    </div>
+    <div class="index-grid" id="index-grid">
+      <!-- JS buildIndexGrid() で生成 -->
+    </div>
+  </div>
+</section>
+
+<!-- 今日の1問 + まとめて演習 -->
+<div class="daily-ex-section">
+  <div class="daily-ex-inner">
+    <div class="daily-small" id="daily-small" onclick="startDailyOne()">
+      <div class="daily-small-label">今日の1問</div>
+      <div class="daily-small-cat" id="daily-small-cat">読み込み中...</div>
+      <div class="daily-small-q" id="daily-small-q"></div>
+      <div class="daily-small-action" id="daily-small-action">この問題を解く</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-card-label">まとめて演習</div>
+      <div class="ex-btns">
+        <button class="ex-btn primary" onclick="loadDailyTen()">今日の10問</button>
+        <button class="ex-btn" onclick="loadRandom()">ランダム10問</button>
+        <button class="ex-btn" onclick="loadWeakReview()">苦手問題を復習</button>
+        <button class="ex-btn" onclick="loadExamCheck()">試験前チェック30問</button>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- 問題演習エリア（カテゴリ選択後に表示） -->
+<div id="question-area">
 <div class="main-wrap">
   <div class="quiz-area">
     <div class="progress-card">
@@ -316,6 +392,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
     </div>
   </div>
 </div>
+</div><!-- /question-area -->
 
 <div class="section-label">分野別に解く</div>
 <nav class="mode-nav" aria-label="分野別タブ">
@@ -848,10 +925,10 @@ const CAT_ARTICLE={
 let qs=[],cur=0,cor=0,wrg=0,ans=false;
 let catWrongMap={},shownMaterialCTA=false,sessionMode="daily";
 function seededShuffle(arr,seed){const a=[...arr];let s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;const j=s%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
-function loadDailyTen(){const seed=parseInt(getTodayStr().replace(/-/g,''));qs=seededShuffle(Q,seed).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="daily";const ls=loadLS()||{};ls.dailyDone=getTodayStr();saveLS(ls);document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
-function loadRandom(){qs=shuffle(Q).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="random";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
-function loadWeakReview(){const ls=loadLS()||{};const cm=ls.catWrongMap||{};if(!Object.keys(cm).length){document.getElementById("question-text").innerHTML="まだ間違えた問題の記録がありません。<br>問題を解いて記録を積み上げましょう。";document.getElementById("question-card").className="question-card";document.getElementById("result-panel").className="result-panel";document.getElementById("btn-next").className="btn-next";document.getElementById("btn-x-share").className="btn-x-share";document.getElementById("btn-maru").disabled=true;document.getElementById("btn-batu").disabled=true;return;}const weakCats=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([cat])=>cat);qs=shuffle(Q.filter(q=>weakCats.includes(q.cat))).slice(0,20);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="weak";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
-function loadExamCheck(){qs=shuffle(Q).slice(0,30);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="exam";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
+function loadDailyTen(){const seed=parseInt(getTodayStr().replace(/-/g,''));qs=seededShuffle(Q,seed).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="daily";const ls=loadLS()||{};ls.dailyDone=getTodayStr();saveLS(ls);document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
+function loadRandom(){qs=shuffle(Q).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="random";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
+function loadWeakReview(){const ls=loadLS()||{};const cm=ls.catWrongMap||{};if(!Object.keys(cm).length){showQuestionArea();document.getElementById("question-text").innerHTML="まだ間違えた問題の記録がありません。<br>問題を解いて記録を積み上げましょう。";document.getElementById("question-card").className="question-card";document.getElementById("result-panel").className="result-panel";document.getElementById("btn-next").className="btn-next";document.getElementById("btn-x-share").className="btn-x-share";document.getElementById("btn-maru").disabled=true;document.getElementById("btn-batu").disabled=true;return;}const weakCats=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([cat])=>cat);qs=shuffle(Q.filter(q=>weakCats.includes(q.cat))).slice(0,20);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="weak";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
+function loadExamCheck(){qs=shuffle(Q).slice(0,30);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="exam";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
 const LS_KEY="kozo-quiz-v1";
 function loadLS(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"null");}catch(e){return null;}}
 function saveLS(d){try{localStorage.setItem(LS_KEY,JSON.stringify(d));}catch(e){}}
@@ -870,7 +947,7 @@ function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.fl
 function loadTab(tab){
   qs=shuffle(tab==="all"?Q:Q.filter(q=>CAT_TAB[q.cat]===tab));
   cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="tab";
-  updateScore();showQ();
+  updateScore();showQ();showQuestionArea();
 }
 function showQ(){
   if(!qs.length){document.getElementById("question-text").innerHTML="この分野の問題は準備中です";return;}
@@ -949,30 +1026,6 @@ function checkStreak(){
   chip.style.display="inline-block";
   return streak;
 }
-function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
-function initDaily(){
-  const today=getTodayStr();const ls=loadLS()||{};const dq=getDailyQ();
-  document.getElementById("daily-cat").textContent="カテゴリ: "+dq.cat;
-  if(ls.dailyDone===today){
-    const card=document.getElementById("daily-card");
-    card.classList.add("done");card.onclick=null;
-    document.getElementById("daily-label").textContent="今日の1問 完了";
-    document.getElementById("daily-action").textContent="また明日！";
-  }
-}
-function startDaily(){
-  if(document.getElementById("daily-card").classList.contains("done"))return;
-  const dq=getDailyQ();const today=getTodayStr();
-  qs=[dq];cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;dailyMode=true;
-  document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));
-  updateScore();showQ();
-  const ls=loadLS()||{};ls.dailyDone=today;saveLS(ls);
-  const card=document.getElementById("daily-card");
-  card.classList.add("done");card.onclick=null;
-  document.getElementById("daily-label").textContent="今日の1問 完了";
-  document.getElementById("daily-action").textContent="また明日！";
-  document.getElementById("question-card").scrollIntoView({behavior:"smooth",block:"start"});
-}
 function updateWeakReview(){
   const el=document.getElementById("weak-review");
   const ls=loadLS()||{catWrongMap:{}};
@@ -1019,8 +1072,97 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
     b.classList.add("active");loadTab(b.dataset.tab);
   });
 });
-function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="cat";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();document.getElementById("question-card").scrollIntoView({behavior:"smooth",block:"start"});}
-updateCounts();loadDailyTen();updateLSDisplay();updateWeakReview();checkStreak();
+/* ========== Phase 1: 新規追加関数 ========== */
+function showQuestionArea(){
+  const qa=document.getElementById("question-area");
+  if(!qa)return;
+  qa.style.display="block";
+  setTimeout(()=>qa.scrollIntoView({behavior:"smooth",block:"start"}),50);
+}
+const EXAM_INDEX_GROUPS=[
+  {id:"structure-01-basic-mechanics",label:"構造 01",title:"構造力学の基本計算",items:["断面の性質・応力度","反力・支点","はり・Q図・M図","ラーメン構造・骨組"],description:"計算問題で落とさないための基本分野です。"},
+  {id:"structure-02-applied-mechanics",label:"構造 02",title:"構造力学の応用計算",items:["トラス・節点法","たわみ","座屈","固有周期・層間変位","全塑性モーメント・崩壊荷重"],description:"トラス、たわみ、座屈、振動など苦手になりやすい計算分野です。"},
+  {id:"structure-03-load-planning-seismic",label:"構造 03",title:"荷重・構造計画・耐震",items:["荷重・外力","地震力・風圧力","構造計画・構造設計","耐震設計","免震・制振"],description:"文章題で点を拾いやすい分野です。"},
+  {id:"structure-04-ground-foundation",label:"構造 04",title:"地盤・基礎",items:["土質・地盤","基礎構造","くい基礎","地盤許容応力度"],description:"地盤、基礎、くい、許容応力度を確認します。"},
+  {id:"structure-05-structural-types",label:"構造 05",title:"各種構造",items:["木構造","RC構造（基本）","RC構造（部材・配筋）","鉄骨構造（基本）","鉄骨構造（接合・座屈）"],description:"木造、RC造、鉄骨造など構造種別ごとの頻出分野です。"},
+  {id:"structure-06-materials",label:"構造 06",title:"建築材料",items:["セメント・コンクリート","鋼材・金属","木材","その他の材料"],description:"材料問題で取りこぼさないための確認分野です。"},
+  {id:"construction-01-management",label:"施工 01",title:"施工管理・届出",items:["施工計画","現場管理・工事管理","材料管理","届出・申請等"],description:"施工計画、管理、届出に関する基本分野です。",comingSoon:true},
+  {id:"construction-02-ground-foundation",label:"施工 02",title:"地盤・基礎工事",items:["仮設工事","地盤調査","土工事・山留工事","地業・基礎工事"],description:"地盤、山留め、基礎まわりの分野です。",comingSoon:true},
+  {id:"construction-03-structure-work",label:"施工 03",title:"躯体工事",items:["鉄筋工事","型枠工事","コンクリート工事","鉄骨工事"],description:"RC造・鉄骨造の躯体工事の分野です。",comingSoon:true},
+  {id:"construction-04-finishing-renovation",label:"施工 04",title:"仕上げ・設備・改修",items:["防水工事","内装工事","設備工事","耐震改修工事"],description:"仕上げ、設備、改修、契約まわりの分野です。",comingSoon:true}
+];
+const INDEX_KEYWORDS={
+  "structure-01-basic-mechanics":["断面","応力度","反力","支点","単純梁","片持ち梁","曲げモーメント","せん断力","ラーメン","骨組","力のモーメント","力の性質","軸力","主応力","図心","中立軸","平行軸","塑性断面係数","断面二次","断面係数","断面一次","断面二次半径","断面形状"],
+  "structure-02-applied-mechanics":["トラス","節点","たわみ","座屈","細長比","固有周期","層間変位","塑性","崩壊荷重","ブレース","アーチ","ねじり","たわみ角","ゲルバー","3ヒンジ","連続梁"],
+  "structure-03-load-planning-seismic":["荷重","外力","地震力","風圧","積雪","積載","固定荷重","構造計画","構造設計","耐震","免震","制振","保有水平耐力","剛性率","偏心率","壁量","計算ルート","仕様規定","超高層","固有周期"],
+  "structure-04-ground-foundation":["土質","地盤","基礎","くい","杭","直接基礎","杭基礎","異種基礎","地耐力","圧密","地盤種別","液状化","地盤改良","不同沈下","根切り","標準貫入"],
+  "structure-05-structural-types":["木質","木造","在来","壁倍率","筋交い","火打","RC構造","鉄筋コンクリート","コンクリート強度","水セメント","スランプ","鉄筋","かぶり","継手定着","耐震壁","鉄骨構造","高力ボルト","溶接","柱脚","幅厚比","横座屈","SRC","PC造","壁式"],
+  "structure-06-materials":["セメント","コンクリート","鋼材","金属","木材","材料力学","ヤング係数","ひずみ","フック","ポアソン","弾塑性","剛性","弾性","降伏","疲労","熱応力","複合材料"]
+};
+function getGroupQ(groupId){
+  const kw=INDEX_KEYWORDS[groupId]||[];
+  if(!kw.length)return[];
+  return Q.filter(q=>kw.some(k=>q.cat.includes(k)));
+}
+function loadGroupQuestions(groupId){
+  const qlist=getGroupQ(groupId);
+  if(!qlist.length)return;
+  qs=shuffle(qlist).slice(0,20);
+  cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="group";
+  document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));
+  updateScore();showQ();showQuestionArea();
+}
+function buildIndexGrid(){
+  const grid=document.getElementById("index-grid");
+  if(!grid)return;
+  grid.innerHTML=EXAM_INDEX_GROUPS.map(g=>{
+    const count=g.comingSoon?0:getGroupQ(g.id).length;
+    const itemsHtml=g.items.join(" / ");
+    if(g.comingSoon){
+      return '<div class="index-card coming-soon">'+
+        '<div class="index-card-label">'+g.label+'</div>'+
+        '<div class="index-card-title">'+g.title+'</div>'+
+        '<div class="index-card-items">'+itemsHtml+'</div>'+
+        '<div class="index-card-footer">'+
+          '<span class="index-card-count zero">準備中</span>'+
+          '<button class="index-card-btn" disabled>準備中</button>'+
+        '</div>'+
+      '</div>';
+    }
+    return '<div class="index-card">'+
+      '<div class="index-card-label">'+g.label+'</div>'+
+      '<div class="index-card-title">'+g.title+'</div>'+
+      '<div class="index-card-items">'+itemsHtml+'</div>'+
+      '<div class="index-card-footer">'+
+        '<span class="index-card-count" id="idx-count-'+g.id+'">'+count+'問</span>'+
+        '<button class="index-card-btn" onclick="loadGroupQuestions(\''+g.id+'\')">この分野を解く</button>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+}
+function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
+function initDailySmall(){
+  const today=getTodayStr();const ls=loadLS()||{};const dq=getDailyQ();
+  document.getElementById("daily-small-cat").textContent=dq.cat;
+  const qtext=dq.q.replace(/<[^>]+>/g,"");
+  document.getElementById("daily-small-q").textContent=qtext.length>60?qtext.slice(0,60)+"...":qtext;
+  if(ls.dailyDone===today){
+    document.getElementById("daily-small").classList.add("done");
+    document.getElementById("daily-small-action").textContent="今日の1問 完了";
+  }
+}
+function startDailyOne(){
+  const el=document.getElementById("daily-small");
+  if(el&&el.classList.contains("done"))return;
+  const dq=getDailyQ();
+  qs=[dq];cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="daily";
+  document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));
+  updateScore();showQ();showQuestionArea();
+  const ls=loadLS()||{};ls.dailyDone=getTodayStr();saveLS(ls);
+  if(el){el.classList.add("done");document.getElementById("daily-small-action").textContent="今日の1問 完了";}
+}
+function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="cat";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
+updateCounts();buildIndexGrid();initDailySmall();updateLSDisplay();updateWeakReview();checkStreak();
 document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
