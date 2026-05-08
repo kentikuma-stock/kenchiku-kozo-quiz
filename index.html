@@ -45,17 +45,24 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .logo-icon{width:36px;height:36px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:white;flex-shrink:0}
 .logo-text{font-size:15px;font-weight:700;color:white;line-height:1.2}
 .logo-sub{font-size:10px;color:rgba(255,255,255,.7);font-weight:400}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .header-score{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border-radius:20px;padding:6px 12px;flex-shrink:0}
 .header-score-item{font-size:12px;color:rgba(255,255,255,.8);font-family:"DM Mono",monospace}
 .header-score-item span{font-weight:700;font-size:14px}
 .header-score-item span.c{color:#6ee7a0}
 .header-score-item span.w{color:#fca5a5}
 .header-score-sep{color:rgba(255,255,255,.3)}
-.hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:20px 16px;border-bottom:3px solid var(--orange)}
+.hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:10px 16px;border-bottom:3px solid var(--orange)}
 .hero-inner{max-width:900px;margin:0 auto}
-.hero-catchcopy{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:6px}
-.hero-title{font-size:18px;font-weight:900;color:white;line-height:1.5;margin-bottom:10px}
-.hero-title span{color:var(--orange)}
+.hero-title{font-size:14px;font-weight:700;color:white;line-height:1.4;margin-bottom:2px}
+.hero-catchcopy{font-size:11px;color:rgba(255,255,255,.65)}
+.action-area{background:var(--white);border-bottom:2px solid var(--border);padding:10px 16px}
+.action-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.action-btn{padding:10px 6px;border-radius:var(--radius);border:2px solid var(--navy);background:white;color:var(--navy);font-family:"Noto Sans JP",sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;line-height:1.4;text-align:center}
+.action-btn:hover{background:var(--navy-light)}
+.action-btn.primary{background:var(--navy);color:white}
+.action-btn.primary:hover{background:var(--navy-dark)}
+.section-label{max-width:900px;margin:0 auto;padding:12px 16px 4px;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:.5px}
 .mode-nav{background:var(--white);border-bottom:1px solid var(--border);padding:8px 12px}
 .mode-nav-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px}
 .mode-tab{padding:6px 14px;border:1px solid var(--border);background:var(--gray);border-radius:20px;font-family:"Noto Sans JP",sans-serif;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .15s;white-space:nowrap}
@@ -64,15 +71,15 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .q-count-badge{display:inline-block;background:var(--orange);color:white;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:4px;vertical-align:middle}
 .main-wrap{max-width:900px;margin:0 auto;padding:16px;width:100%;flex:1;display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start}
 .quiz-area{display:flex;flex-direction:column;gap:12px}
-.progress-card{background:var(--white);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
+.progress-card{background:var(--white);border-radius:var(--radius);padding:12px 16px;border:1px solid var(--border)}
 .progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .progress-label{font-size:12px;color:var(--text-muted);font-family:"DM Mono",monospace}
 .progress-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:3px;transition:width .4s ease}
-.question-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .2s}
-.question-card.correct{box-shadow:0 0 0 2px var(--green),var(--shadow)}
-.question-card.wrong{box-shadow:0 0 0 2px var(--red),var(--shadow)}
-.question-header{background:var(--navy-light);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.progress-fill{height:100%;background:var(--navy);border-radius:3px;transition:width .4s ease}
+.question-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
+.question-card.correct{border-left:4px solid var(--green)}
+.question-card.wrong{border-left:4px solid var(--red)}
+.question-header{background:var(--white);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
 .cat-tag{font-size:11px;font-weight:700;color:var(--navy);background:white;border:1px solid var(--navy);padding:2px 8px;border-radius:4px;flex-shrink:0}
 .q-num{font-family:"DM Mono",monospace;font-size:11px;color:var(--text-muted);margin-left:auto;flex-shrink:0}
 .question-body{padding:22px 20px}
@@ -81,9 +88,9 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .btn-answer{padding:18px 12px;border-radius:var(--radius);border:2px solid transparent;font-family:"Noto Sans JP",sans-serif;font-size:26px;font-weight:900;cursor:pointer;transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .btn-answer span.label{font-size:11px;font-weight:500;letter-spacing:1px}
 .btn-maru{background:var(--green-light);border-color:#a7d9bc;color:var(--green)}
-.btn-maru:hover:not(:disabled){background:#d1f0de;border-color:var(--green);transform:translateY(-2px)}
+.btn-maru:hover:not(:disabled){background:#d1f0de;border-color:var(--green)}
 .btn-batu{background:var(--red-light);border-color:#f0a9a4;color:var(--red)}
-.btn-batu:hover:not(:disabled){background:#fcd9d6;border-color:var(--red);transform:translateY(-2px)}
+.btn-batu:hover:not(:disabled){background:#fcd9d6;border-color:var(--red)}
 .btn-answer:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .result-panel{display:none;margin:0 20px 16px;border-radius:var(--radius);padding:14px 16px}
 .result-panel.correct{display:block;background:var(--green-light);border:1px solid #a7d9bc}
@@ -97,7 +104,7 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .exp-text{font-size:13px;line-height:1.8;color:#374151}
 .btn-next{display:none;width:calc(100% - 40px);margin:0 20px 20px;padding:13px;background:var(--navy);color:white;border:none;border-radius:var(--radius);font-family:"Noto Sans JP",sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s}
 .btn-next.show{display:block}
-.btn-next:hover{background:var(--navy-dark);transform:translateY(-1px)}
+.btn-next:hover{background:var(--navy-dark)}
 .btn-x-share{display:none;width:auto;padding:6px 14px;background:#000;color:white;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;line-height:1;transition:all .15s;margin:4px auto 16px auto;align-items:center;gap:5px}
 .btn-x-share.show{display:inline-flex}
 .btn-x-share:hover{background:#333;transform:scale(1.05)}
@@ -113,7 +120,7 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .daily-action{font-size:12px;font-weight:700;color:var(--navy)}
 .daily-card.done .daily-action{color:var(--green)}
 .sidebar{display:flex;flex-direction:column;gap:14px}
-.side-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.side-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
 .side-card-header{background:var(--navy);padding:10px 14px;font-size:12px;font-weight:700;color:white}
 .side-card-body{padding:14px}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -125,13 +132,13 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .accuracy-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px}
 .accuracy-val{font-weight:700;color:var(--navy)}
 .accuracy-bar{height:7px;background:var(--border);border-radius:4px;overflow:hidden}
-.accuracy-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:4px;transition:width .5s ease}
-.appeal-card{background:linear-gradient(135deg,var(--navy-dark),var(--navy));border-radius:var(--radius);padding:16px}
-.appeal-card-title{font-size:13px;font-weight:700;color:white;margin-bottom:10px;line-height:1.5}
-.appeal-card-title span{color:var(--orange)}
+.accuracy-fill{height:100%;background:var(--navy);border-radius:4px;transition:width .5s ease}
+.appeal-card{background:var(--navy-light);border-radius:var(--radius);padding:16px;border:1px solid var(--border)}
+.appeal-card-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.5}
+.appeal-card-title span{color:var(--navy)}
 .appeal-list{display:flex;flex-direction:column;gap:8px}
-.appeal-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.55;color:rgba(255,255,255,.85)}
-.appeal-dot{width:6px;height:6px;min-width:6px;background:var(--orange);border-radius:50%;margin-top:5px}
+.appeal-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.55;color:var(--text)}
+.appeal-dot{width:6px;height:6px;min-width:6px;background:var(--navy);border-radius:50%;margin-top:5px}
 sup{font-size:0.75em;vertical-align:super;line-height:0}
 /* 学習導線 */
 .source-link-area{margin-top:12px;padding:12px;background:var(--navy-light);border-radius:6px;border-left:3px solid var(--navy)}
@@ -175,12 +182,12 @@ sup{font-size:0.75em;vertical-align:super;line-height:0}
 footer{background:var(--navy-dark);padding:16px;text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:auto}
 footer a{color:rgba(255,255,255,.7);text-decoration:none}
 @media(max-width:680px){
-  .hero{padding:16px}.hero-title{font-size:15px}.hero-catchcopy{font-size:12px}
   .main-wrap{grid-template-columns:1fr;padding:12px;gap:12px}
   .sidebar{display:none}
   .question-text{font-size:15px}
   .btn-answer{padding:15px 10px;font-size:24px}
   .header-score{display:none}
+  .action-inner{grid-template-columns:repeat(2,1fr)}
   .question-body{padding:18px 16px}
   .answer-btns{padding:0 16px 16px}
   .result-panel{margin:0 16px 14px}
@@ -195,51 +202,34 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
     <a class="logo" href="#">
       <div class="logo-icon">0</div>
       <div>
-        <div class="logo-text">ゼロ所長の構造力学問題集</div>
-        <div class="logo-sub">一級・二級建築士対策</div>
+        <div class="logo-text">構造対策WEB問題集</div>
+        <div class="logo-sub">一級建築士・二級建築士｜全1214問｜無料</div>
       </div>
     </a>
-    <div class="header-score">
-      <div class="header-score-item">正解 <span class="c" id="hdr-c">0</span></div>
-      <div class="header-score-sep">/</div>
-      <div class="header-score-item">不正解 <span class="w" id="hdr-w">0</span></div>
+    <div class="header-right">
+      <span class="streak-chip" id="streak-chip" style="display:none"></span>
+      <div class="header-score">
+        <div class="header-score-item">正解 <span class="c" id="hdr-c">0</span></div>
+        <div class="header-score-sep">/</div>
+        <div class="header-score-item">不正解 <span class="w" id="hdr-w">0</span></div>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="hero">
-  <div class="hero-inner">
-    <h1 style="font-size:13px;font-weight:400;color:rgba(255,255,255,.75);margin-bottom:6px;">ゼロ所長の構造力学トレーニング｜無料問題集</h1>
-    <p class="hero-title">構造力学・断面二次モーメント・座屈・曲げモーメントを<br><span>○×クイズ</span>で確認できます</p>
-    <p class="hero-catchcopy">原理から理解する ── 過去問の丸暗記とは違う構造の勉強法</p>
+
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士　構造対策WEB問題集</h1>
+<div class="action-area">
+  <div class="action-inner">
+    <button class="action-btn primary" onclick="loadDailyTen()">今日の10問を解く</button>
+    <button class="action-btn" onclick="loadRandom()">ランダム10問</button>
+    <button class="action-btn" onclick="loadWeakReview()">間違えた問題を復習</button>
+    <button class="action-btn" onclick="loadExamCheck()">試験前チェック30問</button>
   </div>
 </div>
 
-<nav class="mode-nav" aria-label="分野別タブ">
-  <div class="mode-nav-inner">
-    <button class="mode-tab active" data-tab="all">すべて<span class="q-count-badge" id="cnt-all">0</span></button>
-    <button class="mode-tab" data-tab="構造力学">構造力学<span class="q-count-badge" id="cnt-t1">0</span></button>
-    <button class="mode-tab" data-tab="コンクリート・材料">コンクリート・材料<span class="q-count-badge" id="cnt-t2">0</span></button>
-    <button class="mode-tab" data-tab="構造計画">構造計画<span class="q-count-badge" id="cnt-t3">0</span></button>
-    <button class="mode-tab" data-tab="鉄骨構造">鉄骨構造<span class="q-count-badge" id="cnt-t4">0</span></button>
-    <button class="mode-tab" data-tab="RC構造">RC構造<span class="q-count-badge" id="cnt-t5">0</span></button>
-    <button class="mode-tab" data-tab="基礎構造">基礎構造<span class="q-count-badge" id="cnt-t6">0</span></button>
-    <button class="mode-tab" data-tab="木質構造">木質構造<span class="q-count-badge" id="cnt-t7">0</span></button>
-    <button class="mode-tab" data-tab="耐震設計">耐震設計<span class="q-count-badge" id="cnt-t8">0</span></button>
-    <button class="mode-tab" data-tab="建築法規">建築法規<span class="q-count-badge" id="cnt-t9">0</span></button>
-  </div>
-</nav>
-
 <div class="main-wrap">
   <div class="quiz-area">
-    <div class="daily-card" id="daily-card" onclick="startDaily()">
-      <div class="daily-header">
-        <span class="daily-label" id="daily-label">今日の1問</span>
-        <span class="streak-chip" id="streak-chip"></span>
-      </div>
-      <div class="daily-cat" id="daily-cat"></div>
-      <div class="daily-action" id="daily-action">解いてみる</div>
-    </div>
     <div class="progress-card">
       <div class="progress-meta">
         <span class="progress-label" id="prog-text">0 / 0問</span>
@@ -326,6 +316,22 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
     </div>
   </div>
 </div>
+
+<div class="section-label">分野別に解く</div>
+<nav class="mode-nav" aria-label="分野別タブ">
+  <div class="mode-nav-inner">
+    <button class="mode-tab" data-tab="all">すべて<span class="q-count-badge" id="cnt-all">0</span></button>
+    <button class="mode-tab" data-tab="構造力学">構造力学<span class="q-count-badge" id="cnt-t1">0</span></button>
+    <button class="mode-tab" data-tab="コンクリート・材料">コンクリート・材料<span class="q-count-badge" id="cnt-t2">0</span></button>
+    <button class="mode-tab" data-tab="構造計画">構造計画<span class="q-count-badge" id="cnt-t3">0</span></button>
+    <button class="mode-tab" data-tab="鉄骨構造">鉄骨構造<span class="q-count-badge" id="cnt-t4">0</span></button>
+    <button class="mode-tab" data-tab="RC構造">RC構造<span class="q-count-badge" id="cnt-t5">0</span></button>
+    <button class="mode-tab" data-tab="基礎構造">基礎構造<span class="q-count-badge" id="cnt-t6">0</span></button>
+    <button class="mode-tab" data-tab="木質構造">木質構造<span class="q-count-badge" id="cnt-t7">0</span></button>
+    <button class="mode-tab" data-tab="耐震設計">耐震設計<span class="q-count-badge" id="cnt-t8">0</span></button>
+    <button class="mode-tab" data-tab="建築法規">建築法規<span class="q-count-badge" id="cnt-t9">0</span></button>
+  </div>
+</nav>
 
 <!-- SEO・AEO用静的コンテンツ -->
 <div class="seo-section">
@@ -840,7 +846,12 @@ const CAT_ARTICLE={
   "建築法規・コンクリート強度":{title:"構造強度とは？建築基準法施行令の規定",url:"http://kentiku-kouzou.jp/kouzoukeisan-kouzoukyoudo.html"}
 };
 let qs=[],cur=0,cor=0,wrg=0,ans=false;
-let catWrongMap={},shownMaterialCTA=false,dailyMode=false;
+let catWrongMap={},shownMaterialCTA=false,sessionMode="daily";
+function seededShuffle(arr,seed){const a=[...arr];let s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;const j=s%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+function loadDailyTen(){const seed=parseInt(getTodayStr().replace(/-/g,''));qs=seededShuffle(Q,seed).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="daily";const ls=loadLS()||{};ls.dailyDone=getTodayStr();saveLS(ls);document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
+function loadRandom(){qs=shuffle(Q).slice(0,10);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="random";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
+function loadWeakReview(){const ls=loadLS()||{};const cm=ls.catWrongMap||{};if(!Object.keys(cm).length){document.getElementById("question-text").innerHTML="まだ間違えた問題の記録がありません。<br>問題を解いて記録を積み上げましょう。";document.getElementById("question-card").className="question-card";document.getElementById("result-panel").className="result-panel";document.getElementById("btn-next").className="btn-next";document.getElementById("btn-x-share").className="btn-x-share";document.getElementById("btn-maru").disabled=true;document.getElementById("btn-batu").disabled=true;return;}const weakCats=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([cat])=>cat);qs=shuffle(Q.filter(q=>weakCats.includes(q.cat))).slice(0,20);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="weak";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
+function loadExamCheck(){qs=shuffle(Q).slice(0,30);cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="exam";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();}
 const LS_KEY="kozo-quiz-v1";
 function loadLS(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"null");}catch(e){return null;}}
 function saveLS(d){try{localStorage.setItem(LS_KEY,JSON.stringify(d));}catch(e){}}
@@ -858,7 +869,7 @@ function updateLSDisplay(){
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function loadTab(tab){
   qs=shuffle(tab==="all"?Q:Q.filter(q=>CAT_TAB[q.cat]===tab));
-  cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;
+  cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="tab";
   updateScore();showQ();
 }
 function showQ(){
@@ -866,7 +877,9 @@ function showQ(){
   if(cur>=qs.length){qs=shuffle(qs);cur=0;}
   const q=qs[cur];
   document.getElementById("cat-tag").textContent=q.cat;
-  document.getElementById("q-num").textContent="Q"+(cur+1);
+  const _labels={daily:"今日の10問",random:"ランダム10問",weak:"苦手復習",exam:"試験前チェック"};
+  const _lbl=_labels[sessionMode];
+  document.getElementById("q-num").textContent=_lbl?_lbl+" "+(cur+1)+"/"+qs.length+"問":"Q"+(cur+1);
   document.getElementById("question-text").innerHTML=q.q;
   document.getElementById("question-card").className="question-card";
   document.getElementById("result-panel").className="result-panel";
@@ -920,10 +933,7 @@ function answer(ua){
   }
   updateScore();updateWeakReview();updateLSDisplay();
 }
-function nextQuestion(){
-  if(dailyMode){dailyMode=false;loadTab("all");return;}
-  cur++;showQ();
-}
+function nextQuestion(){cur++;showQ();}
 function getTodayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1).toString().padStart(2,'0')+'-'+d.getDate().toString().padStart(2,'0');}
 function checkStreak(){
   const today=getTodayStr();const ls=loadLS()||{};const last=ls.lastVisit;
@@ -936,6 +946,7 @@ function checkStreak(){
   }
   const chip=document.getElementById("streak-chip");
   chip.textContent=streak>=2?streak+"日連続":"1日目";
+  chip.style.display="inline-block";
   return streak;
 }
 function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
@@ -1008,8 +1019,8 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
     b.classList.add("active");loadTab(b.dataset.tab);
   });
 });
-function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();document.querySelector(".mode-nav").scrollIntoView({behavior:"smooth",block:"start"});}
-updateCounts();loadTab("all");updateLSDisplay();updateWeakReview();checkStreak();initDaily();
+function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="cat";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();document.getElementById("question-card").scrollIntoView({behavior:"smooth",block:"start"});}
+updateCounts();loadDailyTen();updateLSDisplay();updateWeakReview();checkStreak();
 document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
