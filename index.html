@@ -101,6 +101,17 @@ header{background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15);position:stic
 .btn-x-share{display:none;width:auto;padding:6px 14px;background:#000;color:white;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;line-height:1;transition:all .15s;margin:4px auto 16px auto;align-items:center;gap:5px}
 .btn-x-share.show{display:inline-flex}
 .btn-x-share:hover{background:#333;transform:scale(1.05)}
+.daily-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--orange);padding:12px 16px;cursor:pointer;transition:all .15s}
+.daily-card:hover{box-shadow:0 4px 12px rgba(26,74,138,.2);transform:translateY(-1px)}
+.daily-card.done{border-left-color:var(--green);cursor:default}
+.daily-card.done:hover{transform:none;box-shadow:var(--shadow)}
+.daily-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.daily-label{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.5px}
+.daily-card.done .daily-label{color:var(--green)}
+.streak-chip{font-size:11px;font-weight:700;color:var(--orange);background:rgba(240,125,0,.12);border-radius:12px;padding:2px 8px}
+.daily-cat{font-size:12px;color:var(--text-muted);margin-bottom:5px}
+.daily-action{font-size:12px;font-weight:700;color:var(--navy)}
+.daily-card.done .daily-action{color:var(--green)}
 .sidebar{display:flex;flex-direction:column;gap:14px}
 .side-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .side-card-header{background:var(--navy);padding:10px 14px;font-size:12px;font-weight:700;color:white}
@@ -221,6 +232,14 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 
 <div class="main-wrap">
   <div class="quiz-area">
+    <div class="daily-card" id="daily-card" onclick="startDaily()">
+      <div class="daily-header">
+        <span class="daily-label" id="daily-label">  今日の1問</span>
+        <span class="streak-chip" id="streak-chip"></span>
+      </div>
+      <div class="daily-cat" id="daily-cat"></div>
+      <div class="daily-action" id="daily-action">→ 解いてみる</div>
+    </div>
     <div class="progress-card">
       <div class="progress-meta">
         <span class="progress-label" id="prog-text">0 / 0問</span>
@@ -821,7 +840,7 @@ const CAT_ARTICLE={
   "建築法規・コンクリート強度":{title:"構造強度とは？建築基準法施行令の規定",url:"http://kentiku-kouzou.jp/kouzoukeisan-kouzoukyoudo.html"}
 };
 let qs=[],cur=0,cor=0,wrg=0,ans=false;
-let catWrongMap={},shownMaterialCTA=false;
+let catWrongMap={},shownMaterialCTA=false,dailyMode=false;
 const LS_KEY="kozo-quiz-v1";
 function loadLS(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"null");}catch(e){return null;}}
 function saveLS(d){try{localStorage.setItem(LS_KEY,JSON.stringify(d));}catch(e){}}
@@ -901,7 +920,48 @@ function answer(ua){
   }
   updateScore();updateWeakReview();updateLSDisplay();
 }
-function nextQuestion(){cur++;showQ();}
+function nextQuestion(){
+  if(dailyMode){dailyMode=false;loadTab("all");return;}
+  cur++;showQ();
+}
+function getTodayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1).toString().padStart(2,'0')+'-'+d.getDate().toString().padStart(2,'0');}
+function checkStreak(){
+  const today=getTodayStr();const ls=loadLS()||{};const last=ls.lastVisit;
+  let streak=ls.streak||0;
+  if(last!==today){
+    const prev=new Date();prev.setDate(prev.getDate()-1);
+    const yd=prev.getFullYear()+'-'+(prev.getMonth()+1).toString().padStart(2,'0')+'-'+prev.getDate().toString().padStart(2,'0');
+    streak=(last===yd)?streak+1:1;
+    ls.lastVisit=today;ls.streak=streak;saveLS(ls);
+  }
+  const chip=document.getElementById("streak-chip");
+  chip.textContent=streak>=2?"  "+streak+"日連続":"  1日目";
+  return streak;
+}
+function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
+function initDaily(){
+  const today=getTodayStr();const ls=loadLS()||{};const dq=getDailyQ();
+  document.getElementById("daily-cat").textContent="カテゴリ: "+dq.cat;
+  if(ls.dailyDone===today){
+    const card=document.getElementById("daily-card");
+    card.classList.add("done");card.onclick=null;
+    document.getElementById("daily-label").textContent="? 今日の1問 解答済み";
+    document.getElementById("daily-action").textContent="また明日！";
+  }
+}
+function startDaily(){
+  if(document.getElementById("daily-card").classList.contains("done"))return;
+  const dq=getDailyQ();const today=getTodayStr();
+  qs=[dq];cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;dailyMode=true;
+  document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));
+  updateScore();showQ();
+  const ls=loadLS()||{};ls.dailyDone=today;saveLS(ls);
+  const card=document.getElementById("daily-card");
+  card.classList.add("done");card.onclick=null;
+  document.getElementById("daily-label").textContent="? 今日の1問 解答済み";
+  document.getElementById("daily-action").textContent="また明日！";
+  document.getElementById("question-card").scrollIntoView({behavior:"smooth",block:"start"});
+}
 function updateWeakReview(){
   const el=document.getElementById("weak-review");
   const ls=loadLS()||{catWrongMap:{}};
@@ -949,7 +1009,7 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
   });
 });
 function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();document.querySelector(".mode-nav").scrollIntoView({behavior:"smooth",block:"start"});}
-updateCounts();loadTab("all");updateLSDisplay();updateWeakReview();
+updateCounts();loadTab("all");updateLSDisplay();updateWeakReview();checkStreak();initDaily();
 document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
