@@ -238,7 +238,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <span class="streak-chip" id="streak-chip"></span>
       </div>
       <div class="daily-cat" id="daily-cat"></div>
-      <div class="daily-action" id="daily-action">→ 解いてみる</div>
+      <div class="daily-action" id="daily-action">解いてみる</div>
     </div>
     <div class="progress-card">
       <div class="progress-meta">
@@ -279,7 +279,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <p class="material-cta-desc">○×問題で迷ったテーマは、用語の意味や図のイメージを整理すると理解しやすくなります。体系的に復習したい方は、用語集・図解集セットもご利用ください。</p>
         <a id="material-cta-10-btn" href="#" target="_blank" rel="noopener noreferrer" class="material-cta-btn">用語集・図解集セットを見る</a>
       </div>
-      <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ →</button>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ</button>
       <a class="btn-x-share" id="btn-x-share" href="#" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> シェア</a>
     </div>
   </div>
@@ -945,7 +945,7 @@ function initDaily(){
   if(ls.dailyDone===today){
     const card=document.getElementById("daily-card");
     card.classList.add("done");card.onclick=null;
-    document.getElementById("daily-label").textContent="? 今日の1問 解答済み";
+    document.getElementById("daily-label").textContent="今日の1問 完了";
     document.getElementById("daily-action").textContent="また明日！";
   }
 }
@@ -958,7 +958,7 @@ function startDaily(){
   const ls=loadLS()||{};ls.dailyDone=today;saveLS(ls);
   const card=document.getElementById("daily-card");
   card.classList.add("done");card.onclick=null;
-  document.getElementById("daily-label").textContent="? 今日の1問 解答済み";
+  document.getElementById("daily-label").textContent="今日の1問 完了";
   document.getElementById("daily-action").textContent="また明日！";
   document.getElementById("question-card").scrollIntoView({behavior:"smooth",block:"start"});
 }
