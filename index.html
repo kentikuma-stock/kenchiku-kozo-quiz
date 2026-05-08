@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>一級建築士・二級建築士 構造対策 WEB問題集｜構造力学・RC構造・鉄骨構造を無料で確認</title>
-<meta name="description" content="一級建築士・二級建築士の構造対策に使える無料WEB問題集です。構造力学、RC構造、鉄骨構造、基礎構造、耐震設計、建築材料を○×問題で確認できます。登録不要・スマホ対応。施工分野も順次追加予定です。">
+<title>一級建築士・二級建築士 構造・施工対策 WEB問題集｜構造力学・RC構造・鉄骨構造・施工を無料で確認</title>
+<meta name="description" content="一級建築士・二級建築士の構造・施工対策に使える無料WEB問題集です。構造力学、RC構造、鉄骨構造、基礎構造、耐震設計、建築材料、施工分野を○×問題で確認できます。登録不要・スマホ対応。">
 <meta name="keywords" content="構造力学,問題集,クイズ,断面二次モーメント,座屈,曲げモーメント,たわみ,一級建築士,二級建築士,建築構造,構造計算">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6DSNC25V"></script>
@@ -194,39 +194,42 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
   .btn-next{width:calc(100% - 32px);margin:0 16px 16px}
   .seo-section{padding:16px 12px}
 }
-/* ========== Phase 1: 目次型トップページ ========== */
-.index-section{background:var(--white);border-bottom:1px solid var(--border);padding:20px 16px 24px}
-.index-inner{max-width:900px;margin:0 auto}
-.index-header{margin-bottom:16px}
-.index-header h2{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.index-header p{font-size:12px;color:var(--text-muted)}
-.index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.index-card{background:var(--gray);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
-.index-card:hover:not(.coming-soon){border-color:var(--navy);background:var(--navy-light)}
-.index-card.coming-soon{opacity:.6}
-.index-card-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.5px}
-.index-card-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.4}
-.index-card-items{font-size:11px;color:var(--text-muted);line-height:1.6}
-.index-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
-.index-card-count{font-size:11px;font-weight:700;color:var(--navy);font-family:"DM Mono",monospace}
-.index-card-count.zero{color:var(--text-muted)}
-.index-card-btn{font-size:11px;font-weight:700;color:var(--navy);background:none;border:1px solid var(--navy);border-radius:4px;padding:3px 10px;cursor:pointer;font-family:"Noto Sans JP",sans-serif;transition:all .15s}
-.index-card-btn:hover{background:var(--navy);color:white}
-.index-card.coming-soon .index-card-btn{color:var(--text-muted);border-color:var(--border);cursor:default}
-.index-card.coming-soon .index-card-btn:hover{background:none;color:var(--text-muted)}
-/* 今日の1問 + まとめて演習セクション */
-.daily-ex-section{background:var(--gray);border-bottom:1px solid var(--border);padding:16px}
-.daily-ex-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.daily-small{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:border-color .15s}
-.daily-small:hover{border-color:var(--orange)}
+/* ========== 目次型TOPページ ========== */
+/* TOCセクションヘッダー */
+.toc-section-head{background:var(--navy-light);border-bottom:1px solid var(--border);padding:12px 16px}
+.toc-section-head-inner{max-width:900px;margin:0 auto}
+.toc-section-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:1px}
+.toc-section-sub{font-size:11px;color:var(--text-muted)}
+/* TOCグリッド（2カラム） */
+.toc-inner{max-width:900px;margin:0 auto;padding:0 16px 16px}
+.toc-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;align-items:start}
+.toc-col{}
+/* 大見出し（構造・施工） */
+.toc-major{background:var(--navy);color:white;font-size:13px;font-weight:700;padding:7px 12px;margin:16px 0 0;letter-spacing:.3px}
+/* 中見出し（【構造力学】等） */
+.toc-group{font-size:10px;font-weight:700;color:var(--text-muted);padding:6px 2px 2px;border-bottom:1px solid var(--border);margin-top:2px;letter-spacing:.3px}
+/* 1行リンク */
+.toc-row{display:flex;align-items:center;padding:6px 2px;border-bottom:1px solid var(--gray);gap:6px;cursor:pointer;transition:background .1s;-webkit-tap-highlight-color:transparent}
+.toc-row:hover:not(.toc-row-soon){background:var(--navy-light)}
+.toc-row-soon{cursor:default;opacity:.5}
+.toc-code{font-size:10px;color:var(--text-muted);min-width:46px;flex-shrink:0;font-family:"DM Mono",monospace}
+.toc-label{flex:1;font-size:13px;color:var(--navy);font-weight:500;line-height:1.35}
+.toc-row:hover:not(.toc-row-soon) .toc-label{text-decoration:underline}
+.toc-count{font-size:10px;color:var(--text-muted);min-width:40px;text-align:right;flex-shrink:0;font-family:"DM Mono",monospace;white-space:nowrap}
+.toc-count.has-q{color:var(--navy);font-weight:700}
+/* 今日の1問 + まとめて演習 */
+.daily-ex-section{background:var(--gray);border-bottom:1px solid var(--border);padding:14px 16px}
+.daily-ex-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.daily-small{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--radius);padding:12px 14px;cursor:pointer;transition:border-color .15s}
+.daily-small:hover{border-left-color:var(--navy)}
 .daily-small.done{border-left-color:var(--green)}
-.daily-small-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.5px;margin-bottom:4px}
+.daily-small-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.5px;margin-bottom:3px}
 .daily-small.done .daily-small-label{color:var(--green)}
-.daily-small-cat{font-size:11px;color:var(--text-muted);margin-bottom:4px}
-.daily-small-q{font-size:13px;font-weight:500;line-height:1.6;color:var(--text);margin-bottom:8px}
-.daily-small-action{font-size:12px;font-weight:700;color:var(--navy)}
+.daily-small-cat{font-size:11px;color:var(--text-muted);margin-bottom:3px}
+.daily-small-q{font-size:12px;font-weight:500;line-height:1.6;color:var(--text);margin-bottom:6px}
+.daily-small-action{font-size:11px;font-weight:700;color:var(--navy)}
 .daily-small.done .daily-small-action{color:var(--green)}
-.ex-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.ex-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px}
 .ex-card-label{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.5px;margin-bottom:8px}
 .ex-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .ex-btn{padding:8px 6px;border-radius:6px;border:1px solid var(--navy);background:white;color:var(--navy);font-family:"Noto Sans JP",sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;line-height:1.4;text-align:center}
@@ -236,11 +239,10 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 /* 問題演習エリア（初期非表示） */
 #question-area{display:none}
 @media(max-width:680px){
-  .index-grid{grid-template-columns:1fr 1fr}
+  .toc-cols{grid-template-columns:1fr}
   .daily-ex-inner{grid-template-columns:1fr}
-}
-@media(max-width:400px){
-  .index-grid{grid-template-columns:1fr}
+  .toc-row{padding:8px 2px}
+  .toc-label{font-size:13px}
 }
 </style>
 </head>
@@ -269,16 +271,14 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士 構造対策 WEB問題集</h1>
 
 <!-- 目次セクション（ファーストビュー） -->
-<section class="index-section">
-  <div class="index-inner">
-    <div class="index-header">
-      <h2>構造・施工の問題集 - 分野を選んで対策をはじめる</h2>
-      <p>全1214問・登録不要・無料｜構造力学・RC構造・鉄骨構造・基礎・材料をスキマ時間で確認</p>
-    </div>
-    <div class="index-grid" id="index-grid">
-      <!-- JS buildIndexGrid() で生成 -->
+<section>
+  <div class="toc-section-head">
+    <div class="toc-section-head-inner">
+      <h2 class="toc-section-title">構造・施工 分野別問題一覧</h2>
+      <p class="toc-section-sub">全1214問・登録不要・無料｜分野をクリックして演習をはじめる</p>
     </div>
   </div>
+  <div class="toc-inner" id="toc-inner"><!-- buildToc() で生成 --></div>
 </section>
 
 <!-- 今日の1問 + まとめて演習 -->
@@ -1072,73 +1072,132 @@ document.querySelectorAll(".mode-tab").forEach(b=>{
     b.classList.add("active");loadTab(b.dataset.tab);
   });
 });
-/* ========== Phase 1: 新規追加関数 ========== */
+/* ========== 目次型TOP: 追加関数 ========== */
 function showQuestionArea(){
   const qa=document.getElementById("question-area");
   if(!qa)return;
   qa.style.display="block";
   setTimeout(()=>qa.scrollIntoView({behavior:"smooth",block:"start"}),50);
 }
-const EXAM_INDEX_GROUPS=[
-  {id:"structure-01-basic-mechanics",label:"構造 01",title:"構造力学の基本計算",items:["断面の性質・応力度","反力・支点","はり・Q図・M図","ラーメン構造・骨組"],description:"計算問題で落とさないための基本分野です。"},
-  {id:"structure-02-applied-mechanics",label:"構造 02",title:"構造力学の応用計算",items:["トラス・節点法","たわみ","座屈","固有周期・層間変位","全塑性モーメント・崩壊荷重"],description:"トラス、たわみ、座屈、振動など苦手になりやすい計算分野です。"},
-  {id:"structure-03-load-planning-seismic",label:"構造 03",title:"荷重・構造計画・耐震",items:["荷重・外力","地震力・風圧力","構造計画・構造設計","耐震設計","免震・制振"],description:"文章題で点を拾いやすい分野です。"},
-  {id:"structure-04-ground-foundation",label:"構造 04",title:"地盤・基礎",items:["土質・地盤","基礎構造","くい基礎","地盤許容応力度"],description:"地盤、基礎、くい、許容応力度を確認します。"},
-  {id:"structure-05-structural-types",label:"構造 05",title:"各種構造",items:["木構造","RC構造（基本）","RC構造（部材・配筋）","鉄骨構造（基本）","鉄骨構造（接合・座屈）"],description:"木造、RC造、鉄骨造など構造種別ごとの頻出分野です。"},
-  {id:"structure-06-materials",label:"構造 06",title:"建築材料",items:["セメント・コンクリート","鋼材・金属","木材","その他の材料"],description:"材料問題で取りこぼさないための確認分野です。"},
-  {id:"construction-01-management",label:"施工 01",title:"施工管理・届出",items:["施工計画","現場管理・工事管理","材料管理","届出・申請等"],description:"施工計画、管理、届出に関する基本分野です。",comingSoon:true},
-  {id:"construction-02-ground-foundation",label:"施工 02",title:"地盤・基礎工事",items:["仮設工事","地盤調査","土工事・山留工事","地業・基礎工事"],description:"地盤、山留め、基礎まわりの分野です。",comingSoon:true},
-  {id:"construction-03-structure-work",label:"施工 03",title:"躯体工事",items:["鉄筋工事","型枠工事","コンクリート工事","鉄骨工事"],description:"RC造・鉄骨造の躯体工事の分野です。",comingSoon:true},
-  {id:"construction-04-finishing-renovation",label:"施工 04",title:"仕上げ・設備・改修",items:["防水工事","内装工事","設備工事","耐震改修工事"],description:"仕上げ、設備、改修、契約まわりの分野です。",comingSoon:true}
+/* INDEX_SECTIONS: 目次の正式分類。cats は既存 quizData の cat 値と完全一致 */
+const INDEX_SECTIONS=[
+  {heading:"構造",groups:[
+    {label:"【構造力学】",items:[
+      {id:"s01",code:"構造01",text:"断面の性質・応力度",cats:["断面の性質・断面一次モーメント","断面の性質・断面二次モーメント","断面の性質・断面係数","断面の性質・断面二次半径","断面の性質・中立軸","断面の性質・断面形状","断面の性質・平行軸の定理","断面の性質・塑性断面係数","断面の性質・図心","応力・応力度","応力・軸力","応力・主応力","材料力学・応力度"]},
+      {id:"s02",code:"構造02",text:"反力・支点",cats:["構造力学・反力と支点","構造力学・支点","構造力学・力の釣り合い","構造力学・静定不静定","力のモーメント","力の性質・合成・分解","構造力学・荷重"]},
+      {id:"s03",code:"構造03",text:"はり・Q図・M図",cats:["構造力学・単純梁","構造力学・片持ち梁","構造力学・両端固定梁","構造力学・連続梁","構造力学・ゲルバー梁","構造力学・曲げモーメント","構造力学・曲げ材","応力・せん断力"]},
+      {id:"s04",code:"構造04",text:"ラーメン構造・骨組",cats:["構造力学・ラーメン構造","構造力学・3ヒンジラーメン","構造力学・ブレース","構造力学・アーチ"]},
+      {id:"s05",code:"構造05",text:"トラス・節点法",cats:["構造力学・トラス"]},
+      {id:"s06",code:"構造06",text:"たわみ",cats:["構造力学・たわみ","構造力学・たわみ角"]},
+      {id:"s07",code:"構造07",text:"座屈",cats:["構造力学・座屈","構造力学・オイラー座屈","構造力学・細長比","構造力学・ねじり"]},
+      {id:"s08",code:"構造08",text:"固有周期・層間変位",cats:["構造計画・固有周期","耐震設計・固有周期","耐震設計・共振","耐震設計・減衰","耐震設計・地震動","耐震設計・設計概念"]},
+      {id:"s09",code:"構造09",text:"全塑性モーメント・崩壊荷重",cats:[]}
+    ]},
+    {label:"【荷重・構造計画】",items:[
+      {id:"s10",code:"構造10",text:"荷重・外力",cats:["構造計画・荷重","構造計画・固定荷重","構造計画・積載荷重","構造計画・積雪荷重","構造計画・荷重組合せ"]},
+      {id:"s11",code:"構造11",text:"地震力・風圧力",cats:["構造計画・地震力","構造計画・風荷重"]},
+      {id:"s12",code:"構造12",text:"構造計画・構造設計",cats:["構造計画・計算ルート","構造計画・一次二次設計","構造計画・仕様規定","構造計画・構造種別","構造計画・超高層","構造計画・建築基準法","構造計画・設計概要","構造計画・ルート詳細","建物構造・種類","構造計画・許容応力度","建築法規・構造計算ルート","建築法規・確認申請"]},
+      {id:"s13",code:"構造13",text:"耐震設計",cats:["構造計画・保有水平耐力","構造計画・剛性率","構造計画・偏心率","構造計画・壁量","構造計画・耐震設計","構造計画・耐震診断","耐震設計・耐震診断","耐震設計・耐震等級","耐震設計・耐震基準"]},
+      {id:"s14",code:"構造14",text:"免震・制振",cats:["構造計画・免震制震"]}
+    ]},
+    {label:"【地盤・基礎】",items:[
+      {id:"s15",code:"構造15",text:"土質・地盤",cats:["基礎構造・地盤調査","基礎構造・地盤種別","基礎構造・液状化","基礎構造・地盤改良","基礎構造・標準貫入試験"]},
+      {id:"s16",code:"構造16",text:"基礎構造",cats:["基礎構造・直接基礎","基礎構造・異種基礎","基礎構造・地耐力","基礎構造・支持層","基礎構造・圧密沈下","基礎構造・不同沈下","建築法規・基礎規定"]},
+      {id:"s17",code:"構造17",text:"くい基礎",cats:["基礎構造・杭基礎","基礎構造・杭の種類","基礎構造・杭設計","基礎構造・根切り"]},
+      {id:"s18",code:"構造18",text:"地盤許容応力度",cats:["建築法規・地盤許容応力度"]}
+    ]},
+    {label:"【各種構造】",items:[
+      {id:"s19",code:"構造19",text:"木構造",cats:["木質構造・筋交い","木質構造・壁倍率","木質構造・在来工法","木質構造・四分割法","木質構造・許容応力度","木質構造・火打ち","木質構造・軸組み","木質構造・水平構面","建築法規・木造規定"]},
+      {id:"s20",code:"構造20",text:"RC構造",cats:["RC構造・材料基本","RC構造・コンクリート強度","RC構造・水セメント比","RC構造・スランプ","RC構造・セメント","RC構造・鉄筋","RC構造・かぶり","RC構造・継手定着","RC構造・施工","RC構造・クリープ","RC構造・せん断補強筋","RC構造・フラットスラブ","RC構造・高強度コンクリート","RC構造・スラブ配筋","RC構造・混和材料","RC構造・コンクリート種類","RC構造・調合設計","RC構造・養生","RC構造・コンクリート工事","RC構造・ひび割れ","RC構造・耐震壁","RC構造・鉄筋規格","RC構造・梁配筋","RC構造・柱配筋","RC構造・スラブ設計","RC構造・柱梁接合部","RC構造・コンクリート性質","建築法規・RC造規定","建築法規・継手定着規定","建築法規・コンクリート強度"]},
+      {id:"s21",code:"構造21",text:"鉄骨構造",cats:["鉄骨構造・基礎","鉄骨構造・鋼材","鉄骨構造・接合","鉄骨構造・断面","鉄骨構造・断面形状","鉄骨構造・H形鋼","鉄骨構造・溝形鋼","鉄骨構造・山形鋼","鉄骨構造・角形鋼管","鉄骨構造・許容応力度","鉄骨構造・鋼管","鉄骨構造・鋼材規格","鉄骨構造・鋼板","鉄骨構造・溶接","鉄骨構造・SS材","鉄骨構造・SN材","鉄骨構造・SM材","鉄骨構造・SNR材","鉄骨構造・ステンレス","鉄骨構造・部材名称","鉄骨構造・合成梁","鉄骨構造・材料物性","鉄骨構造・許容応力度計算","鉄骨構造・横座屈","鉄骨構造・ブレース設計","鉄骨構造・幅厚比","鉄骨構造・二次部材","鉄骨構造・接合部","鉄骨構造・高力ボルト","鉄骨構造・ボルト施工","鉄骨構造・柱脚","鉄骨構造・高力ボルト耐力","鉄骨構造・ボルト配置","鉄骨構造・溶接設計","鉄骨構造・溶接欠陥","鉄骨構造・スタッド","鉄骨構造・継手","鉄骨構造・ダイアフラム","鉄骨構造・耐火防錆","鉄骨構造・建方施工","鉄骨構造・接合部材","鉄骨構造・引張材","鉄骨構造・圧縮材","鉄骨構造・鋼材力学","鉄骨構造・有効断面","建築法規・鉄骨造規定","建築法規・鉄骨柱脚接合"]},
+      {id:"s22",code:"構造22",text:"SRC構造",cats:[]},
+      {id:"s23",code:"構造23",text:"PC構造・壁式構造",cats:["RC構造・PC造"]}
+    ]},
+    {label:"【建築材料】",items:[
+      {id:"s24",code:"構造24",text:"セメント・コンクリート",cats:["材料力学・ヤング係数","材料力学・ひずみ","材料力学・フックの法則","材料力学・ポアソン比","材料力学・弾塑性","材料力学・剛性","材料力学・弾性変形","材料力学・塑性変形","材料力学・降伏破断","材料力学・応力集中","材料力学・疲労","材料力学・熱応力","材料力学・複合材料"]},
+      {id:"s25",code:"構造25",text:"鋼材・金属",cats:[]},
+      {id:"s26",code:"構造26",text:"木材",cats:[]},
+      {id:"s27",code:"構造27",text:"その他の材料",cats:[]}
+    ]}
+  ]},
+  {heading:"施工",groups:[
+    {label:"【施工管理・届出】",items:[
+      {id:"c01",code:"施工01",text:"施工計画",cats:[],comingSoon:true},
+      {id:"c02",code:"施工02",text:"現場管理",cats:[],comingSoon:true},
+      {id:"c03",code:"施工03",text:"材料管理",cats:[],comingSoon:true},
+      {id:"c04",code:"施工04",text:"届出・申請等",cats:[],comingSoon:true}
+    ]},
+    {label:"【地盤・基礎工事】",items:[
+      {id:"c05",code:"施工05",text:"仮設工事",cats:[],comingSoon:true},
+      {id:"c06",code:"施工06",text:"地盤調査",cats:[],comingSoon:true},
+      {id:"c07",code:"施工07",text:"土工事・山留工事",cats:[],comingSoon:true},
+      {id:"c08",code:"施工08",text:"地業・基礎工事",cats:[],comingSoon:true}
+    ]},
+    {label:"【躯体工事】",items:[
+      {id:"c09",code:"施工09",text:"鉄筋工事",cats:[],comingSoon:true},
+      {id:"c10",code:"施工10",text:"型枠工事",cats:[],comingSoon:true},
+      {id:"c11",code:"施工11",text:"コンクリート工事",cats:[],comingSoon:true},
+      {id:"c12",code:"施工12",text:"鉄骨工事",cats:[],comingSoon:true}
+    ]},
+    {label:"【仕上げ・設備・改修】",items:[
+      {id:"c13",code:"施工13",text:"防水工事",cats:[],comingSoon:true},
+      {id:"c14",code:"施工14",text:"屋根・外装・塗装工事",cats:[],comingSoon:true},
+      {id:"c15",code:"施工15",text:"左官・タイル・石工事",cats:[],comingSoon:true},
+      {id:"c16",code:"施工16",text:"金属・ガラス工事",cats:[],comingSoon:true},
+      {id:"c17",code:"施工17",text:"内装工事",cats:[],comingSoon:true},
+      {id:"c18",code:"施工18",text:"設備工事",cats:[],comingSoon:true},
+      {id:"c19",code:"施工19",text:"耐震改修工事",cats:[],comingSoon:true},
+      {id:"c20",code:"施工20",text:"請負契約・契約約款",cats:[],comingSoon:true}
+    ]}
+  ]}
 ];
-const INDEX_KEYWORDS={
-  "structure-01-basic-mechanics":["断面","応力度","反力","支点","単純梁","片持ち梁","曲げモーメント","せん断力","ラーメン","骨組","力のモーメント","力の性質","軸力","主応力","図心","中立軸","平行軸","塑性断面係数","断面二次","断面係数","断面一次","断面二次半径","断面形状"],
-  "structure-02-applied-mechanics":["トラス","節点","たわみ","座屈","細長比","固有周期","層間変位","塑性","崩壊荷重","ブレース","アーチ","ねじり","たわみ角","ゲルバー","3ヒンジ","連続梁"],
-  "structure-03-load-planning-seismic":["荷重","外力","地震力","風圧","積雪","積載","固定荷重","構造計画","構造設計","耐震","免震","制振","保有水平耐力","剛性率","偏心率","壁量","計算ルート","仕様規定","超高層","固有周期"],
-  "structure-04-ground-foundation":["土質","地盤","基礎","くい","杭","直接基礎","杭基礎","異種基礎","地耐力","圧密","地盤種別","液状化","地盤改良","不同沈下","根切り","標準貫入"],
-  "structure-05-structural-types":["木質","木造","在来","壁倍率","筋交い","火打","RC構造","鉄筋コンクリート","コンクリート強度","水セメント","スランプ","鉄筋","かぶり","継手定着","耐震壁","鉄骨構造","高力ボルト","溶接","柱脚","幅厚比","横座屈","SRC","PC造","壁式"],
-  "structure-06-materials":["セメント","コンクリート","鋼材","金属","木材","材料力学","ヤング係数","ひずみ","フック","ポアソン","弾塑性","剛性","弾性","降伏","疲労","熱応力","複合材料"]
-};
-function getGroupQ(groupId){
-  const kw=INDEX_KEYWORDS[groupId]||[];
-  if(!kw.length)return[];
-  return Q.filter(q=>kw.some(k=>q.cat.includes(k)));
+function getSectionItem(id){
+  for(const s of INDEX_SECTIONS)for(const g of s.groups){const it=g.items.find(i=>i.id===id);if(it)return it;}
+  return null;
 }
-function loadGroupQuestions(groupId){
-  const qlist=getGroupQ(groupId);
+function getSectionQ(id){
+  const item=getSectionItem(id);
+  if(!item||!item.cats.length)return[];
+  return Q.filter(q=>item.cats.includes(q.cat));
+}
+function loadSectionQ(id){
+  const qlist=getSectionQ(id);
   if(!qlist.length)return;
-  qs=shuffle(qlist).slice(0,20);
+  qs=shuffle(qlist).slice(0,Math.min(qlist.length,20));
   cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="group";
   document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));
   updateScore();showQ();showQuestionArea();
 }
-function buildIndexGrid(){
-  const grid=document.getElementById("index-grid");
-  if(!grid)return;
-  grid.innerHTML=EXAM_INDEX_GROUPS.map(g=>{
-    const count=g.comingSoon?0:getGroupQ(g.id).length;
-    const itemsHtml=g.items.join(" / ");
-    if(g.comingSoon){
-      return '<div class="index-card coming-soon">'+
-        '<div class="index-card-label">'+g.label+'</div>'+
-        '<div class="index-card-title">'+g.title+'</div>'+
-        '<div class="index-card-items">'+itemsHtml+'</div>'+
-        '<div class="index-card-footer">'+
-          '<span class="index-card-count zero">準備中</span>'+
-          '<button class="index-card-btn" disabled>準備中</button>'+
-        '</div>'+
-      '</div>';
-    }
-    return '<div class="index-card">'+
-      '<div class="index-card-label">'+g.label+'</div>'+
-      '<div class="index-card-title">'+g.title+'</div>'+
-      '<div class="index-card-items">'+itemsHtml+'</div>'+
-      '<div class="index-card-footer">'+
-        '<span class="index-card-count" id="idx-count-'+g.id+'">'+count+'問</span>'+
-        '<button class="index-card-btn" onclick="loadGroupQuestions(\''+g.id+'\')">この分野を解く</button>'+
-      '</div>'+
-    '</div>';
-  }).join("");
+function buildToc(){
+  const container=document.getElementById("toc-inner");
+  if(!container)return;
+  let html='<div class="toc-cols">';
+  INDEX_SECTIONS.forEach(section=>{
+    html+='<div class="toc-col">';
+    html+='<div class="toc-major">'+section.heading+'</div>';
+    section.groups.forEach(group=>{
+      html+='<div class="toc-group">'+group.label+'</div>';
+      group.items.forEach(item=>{
+        const cats=item.cats||[];
+        const count=(cats.length&&!item.comingSoon)?Q.filter(q=>cats.includes(q.cat)).length:0;
+        const soon=item.comingSoon||count===0;
+        const rowClass='toc-row'+(soon?' toc-row-soon':'');
+        const sid=soon?'':' data-sid="'+item.id+'"';
+        html+='<div class="'+rowClass+'"'+sid+'>'+
+          '<span class="toc-code">'+item.code+'</span>'+
+          '<span class="toc-label">'+item.text+'</span>'+
+          '<span class="toc-count'+(count>0?' has-q':'')+'">'+
+            (soon?'準備中':count+'問')+
+          '</span></div>';
+      });
+    });
+    html+='</div>';
+  });
+  html+='</div>';
+  container.innerHTML=html;
+  container.querySelectorAll('[data-sid]').forEach(el=>{
+    el.addEventListener('click',()=>loadSectionQ(el.dataset.sid));
+  });
 }
 function getDailyQ(){const seed=parseInt(getTodayStr().replace(/-/g,''));return Q[seed%Q.length];}
 function initDailySmall(){
@@ -1162,7 +1221,7 @@ function startDailyOne(){
   if(el){el.classList.add("done");document.getElementById("daily-small-action").textContent="今日の1問 完了";}
 }
 function startCat(cat){qs=shuffle(Q.filter(q=>q.cat===cat));cur=0;cor=0;wrg=0;ans=false;catWrongMap={};shownMaterialCTA=false;sessionMode="cat";document.querySelectorAll(".mode-tab").forEach(x=>x.classList.remove("active"));updateScore();showQ();showQuestionArea();}
-updateCounts();buildIndexGrid();initDailySmall();updateLSDisplay();updateWeakReview();checkStreak();
+updateCounts();buildToc();initDailySmall();updateLSDisplay();updateWeakReview();checkStreak();
 document.getElementById("page-bottom-cta-btn").href=MATERIAL_URL;
 </script>
 </body>
