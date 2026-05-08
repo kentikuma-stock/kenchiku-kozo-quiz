@@ -207,7 +207,19 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 /* 大見出し（構造・施工） */
 .toc-major{background:var(--navy);color:white;font-size:13px;font-weight:700;padding:7px 12px;margin:16px 0 0;letter-spacing:.3px}
 /* 中見出し（【構造力学】等） */
-.toc-group{font-size:10px;font-weight:700;color:var(--text-muted);padding:6px 2px 2px;border-bottom:1px solid var(--border);margin-top:2px;letter-spacing:.3px}
+.toc-group{font-size:10px;font-weight:700;color:#333;padding:5px 8px;border-bottom:1px solid rgba(0,0,0,.07);margin-top:2px;letter-spacing:.4px}
+/* グループ別背景色 */
+.toc-grp-mechanics{background:#dcebf7}
+.toc-grp-loads{background:#dff3f6}
+.toc-grp-foundation{background:#e2f3df}
+.toc-grp-structures{background:#eee5f4}
+.toc-grp-materials{background:#fff0d9}
+.toc-grp-management{background:#f7e0ee}
+.toc-grp-groundwork{background:#f6eddc}
+.toc-grp-frame{background:#f8dddd}
+.toc-grp-finishing{background:#e7edf5}
+/* 施工 大見出し */
+.toc-major-seko{background:#8b5a9f}
 /* 1行リンク */
 .toc-row{display:flex;align-items:center;padding:6px 2px;border-bottom:1px solid var(--gray);gap:6px;cursor:pointer;transition:background .1s;-webkit-tap-highlight-color:transparent}
 .toc-row:hover:not(.toc-row-soon){background:var(--navy-light)}
@@ -252,7 +264,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
     <a class="logo" href="#">
       <div class="logo-icon">0</div>
       <div>
-        <div class="logo-text">構造対策 WEB問題集</div>
+        <div class="logo-text">構造・施工対策 WEB問題集</div>
         <div class="logo-sub">一級・二級建築士｜全1214問｜登録不要・無料</div>
       </div>
     </a>
@@ -267,15 +279,21 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
   </div>
 </header>
 
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士 構造・施工対策 WEB問題集</h1>
 
-<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">一級建築士・二級建築士 構造対策 WEB問題集</h1>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-title">一級建築士・二級建築士 構造・施工対策 WEB問題集</div>
+    <div class="hero-catchcopy">全1214問｜登録不要｜無料｜スマホ対応｜構造力学・RC構造・鉄骨構造・施工をスキマ時間で確認</div>
+  </div>
+</div>
 
 <!-- 目次セクション（ファーストビュー） -->
 <section>
   <div class="toc-section-head">
     <div class="toc-section-head-inner">
       <h2 class="toc-section-title">構造・施工 分野別問題一覧</h2>
-      <p class="toc-section-sub">全1214問・登録不要・無料｜分野をクリックして演習をはじめる</p>
+      <p class="toc-section-sub">分野をクリックして問題を解く｜ゼロ所長が間違えやすいポイントをやさしく解説</p>
     </div>
   </div>
   <div class="toc-inner" id="toc-inner"><!-- buildToc() で生成 --></div>
@@ -1082,7 +1100,7 @@ function showQuestionArea(){
 /* INDEX_SECTIONS: 目次の正式分類。cats は既存 quizData の cat 値と完全一致 */
 const INDEX_SECTIONS=[
   {heading:"構造",groups:[
-    {label:"【構造力学】",items:[
+    {label:"【構造力学】",colorClass:"toc-grp-mechanics",items:[
       {id:"s01",code:"構造01",text:"断面の性質・応力度",cats:["断面の性質・断面一次モーメント","断面の性質・断面二次モーメント","断面の性質・断面係数","断面の性質・断面二次半径","断面の性質・中立軸","断面の性質・断面形状","断面の性質・平行軸の定理","断面の性質・塑性断面係数","断面の性質・図心","応力・応力度","応力・軸力","応力・主応力","材料力学・応力度"]},
       {id:"s02",code:"構造02",text:"反力・支点",cats:["構造力学・反力と支点","構造力学・支点","構造力学・力の釣り合い","構造力学・静定不静定","力のモーメント","力の性質・合成・分解","構造力学・荷重"]},
       {id:"s03",code:"構造03",text:"はり・Q図・M図",cats:["構造力学・単純梁","構造力学・片持ち梁","構造力学・両端固定梁","構造力学・連続梁","構造力学・ゲルバー梁","構造力学・曲げモーメント","構造力学・曲げ材","応力・せん断力"]},
@@ -1093,27 +1111,27 @@ const INDEX_SECTIONS=[
       {id:"s08",code:"構造08",text:"固有周期・層間変位",cats:["構造計画・固有周期","耐震設計・固有周期","耐震設計・共振","耐震設計・減衰","耐震設計・地震動","耐震設計・設計概念"]},
       {id:"s09",code:"構造09",text:"全塑性モーメント・崩壊荷重",cats:[]}
     ]},
-    {label:"【荷重・構造計画】",items:[
+    {label:"【荷重・構造計画】",colorClass:"toc-grp-loads",items:[
       {id:"s10",code:"構造10",text:"荷重・外力",cats:["構造計画・荷重","構造計画・固定荷重","構造計画・積載荷重","構造計画・積雪荷重","構造計画・荷重組合せ"]},
       {id:"s11",code:"構造11",text:"地震力・風圧力",cats:["構造計画・地震力","構造計画・風荷重"]},
       {id:"s12",code:"構造12",text:"構造計画・構造設計",cats:["構造計画・計算ルート","構造計画・一次二次設計","構造計画・仕様規定","構造計画・構造種別","構造計画・超高層","構造計画・建築基準法","構造計画・設計概要","構造計画・ルート詳細","建物構造・種類","構造計画・許容応力度","建築法規・構造計算ルート","建築法規・確認申請"]},
       {id:"s13",code:"構造13",text:"耐震設計",cats:["構造計画・保有水平耐力","構造計画・剛性率","構造計画・偏心率","構造計画・壁量","構造計画・耐震設計","構造計画・耐震診断","耐震設計・耐震診断","耐震設計・耐震等級","耐震設計・耐震基準"]},
       {id:"s14",code:"構造14",text:"免震・制振",cats:["構造計画・免震制震"]}
     ]},
-    {label:"【地盤・基礎】",items:[
+    {label:"【地盤・基礎】",colorClass:"toc-grp-foundation",items:[
       {id:"s15",code:"構造15",text:"土質・地盤",cats:["基礎構造・地盤調査","基礎構造・地盤種別","基礎構造・液状化","基礎構造・地盤改良","基礎構造・標準貫入試験"]},
       {id:"s16",code:"構造16",text:"基礎構造",cats:["基礎構造・直接基礎","基礎構造・異種基礎","基礎構造・地耐力","基礎構造・支持層","基礎構造・圧密沈下","基礎構造・不同沈下","建築法規・基礎規定"]},
       {id:"s17",code:"構造17",text:"くい基礎",cats:["基礎構造・杭基礎","基礎構造・杭の種類","基礎構造・杭設計","基礎構造・根切り"]},
       {id:"s18",code:"構造18",text:"地盤許容応力度",cats:["建築法規・地盤許容応力度"]}
     ]},
-    {label:"【各種構造】",items:[
+    {label:"【各種構造】",colorClass:"toc-grp-structures",items:[
       {id:"s19",code:"構造19",text:"木構造",cats:["木質構造・筋交い","木質構造・壁倍率","木質構造・在来工法","木質構造・四分割法","木質構造・許容応力度","木質構造・火打ち","木質構造・軸組み","木質構造・水平構面","建築法規・木造規定"]},
       {id:"s20",code:"構造20",text:"RC構造",cats:["RC構造・材料基本","RC構造・コンクリート強度","RC構造・水セメント比","RC構造・スランプ","RC構造・セメント","RC構造・鉄筋","RC構造・かぶり","RC構造・継手定着","RC構造・施工","RC構造・クリープ","RC構造・せん断補強筋","RC構造・フラットスラブ","RC構造・高強度コンクリート","RC構造・スラブ配筋","RC構造・混和材料","RC構造・コンクリート種類","RC構造・調合設計","RC構造・養生","RC構造・コンクリート工事","RC構造・ひび割れ","RC構造・耐震壁","RC構造・鉄筋規格","RC構造・梁配筋","RC構造・柱配筋","RC構造・スラブ設計","RC構造・柱梁接合部","RC構造・コンクリート性質","建築法規・RC造規定","建築法規・継手定着規定","建築法規・コンクリート強度"]},
       {id:"s21",code:"構造21",text:"鉄骨構造",cats:["鉄骨構造・基礎","鉄骨構造・鋼材","鉄骨構造・接合","鉄骨構造・断面","鉄骨構造・断面形状","鉄骨構造・H形鋼","鉄骨構造・溝形鋼","鉄骨構造・山形鋼","鉄骨構造・角形鋼管","鉄骨構造・許容応力度","鉄骨構造・鋼管","鉄骨構造・鋼材規格","鉄骨構造・鋼板","鉄骨構造・溶接","鉄骨構造・SS材","鉄骨構造・SN材","鉄骨構造・SM材","鉄骨構造・SNR材","鉄骨構造・ステンレス","鉄骨構造・部材名称","鉄骨構造・合成梁","鉄骨構造・材料物性","鉄骨構造・許容応力度計算","鉄骨構造・横座屈","鉄骨構造・ブレース設計","鉄骨構造・幅厚比","鉄骨構造・二次部材","鉄骨構造・接合部","鉄骨構造・高力ボルト","鉄骨構造・ボルト施工","鉄骨構造・柱脚","鉄骨構造・高力ボルト耐力","鉄骨構造・ボルト配置","鉄骨構造・溶接設計","鉄骨構造・溶接欠陥","鉄骨構造・スタッド","鉄骨構造・継手","鉄骨構造・ダイアフラム","鉄骨構造・耐火防錆","鉄骨構造・建方施工","鉄骨構造・接合部材","鉄骨構造・引張材","鉄骨構造・圧縮材","鉄骨構造・鋼材力学","鉄骨構造・有効断面","建築法規・鉄骨造規定","建築法規・鉄骨柱脚接合"]},
       {id:"s22",code:"構造22",text:"SRC構造",cats:[]},
       {id:"s23",code:"構造23",text:"PC構造・壁式構造",cats:["RC構造・PC造"]}
     ]},
-    {label:"【建築材料】",items:[
+    {label:"【建築材料】",colorClass:"toc-grp-materials",items:[
       {id:"s24",code:"構造24",text:"セメント・コンクリート",cats:["材料力学・ヤング係数","材料力学・ひずみ","材料力学・フックの法則","材料力学・ポアソン比","材料力学・弾塑性","材料力学・剛性","材料力学・弾性変形","材料力学・塑性変形","材料力学・降伏破断","材料力学・応力集中","材料力学・疲労","材料力学・熱応力","材料力学・複合材料"]},
       {id:"s25",code:"構造25",text:"鋼材・金属",cats:[]},
       {id:"s26",code:"構造26",text:"木材",cats:[]},
@@ -1121,25 +1139,25 @@ const INDEX_SECTIONS=[
     ]}
   ]},
   {heading:"施工",groups:[
-    {label:"【施工管理・届出】",items:[
+    {label:"【施工管理・届出】",colorClass:"toc-grp-management",items:[
       {id:"c01",code:"施工01",text:"施工計画",cats:[],comingSoon:true},
       {id:"c02",code:"施工02",text:"現場管理",cats:[],comingSoon:true},
       {id:"c03",code:"施工03",text:"材料管理",cats:[],comingSoon:true},
       {id:"c04",code:"施工04",text:"届出・申請等",cats:[],comingSoon:true}
     ]},
-    {label:"【地盤・基礎工事】",items:[
+    {label:"【地盤・基礎工事】",colorClass:"toc-grp-groundwork",items:[
       {id:"c05",code:"施工05",text:"仮設工事",cats:[],comingSoon:true},
       {id:"c06",code:"施工06",text:"地盤調査",cats:[],comingSoon:true},
       {id:"c07",code:"施工07",text:"土工事・山留工事",cats:[],comingSoon:true},
       {id:"c08",code:"施工08",text:"地業・基礎工事",cats:[],comingSoon:true}
     ]},
-    {label:"【躯体工事】",items:[
+    {label:"【躯体工事】",colorClass:"toc-grp-frame",items:[
       {id:"c09",code:"施工09",text:"鉄筋工事",cats:[],comingSoon:true},
       {id:"c10",code:"施工10",text:"型枠工事",cats:[],comingSoon:true},
       {id:"c11",code:"施工11",text:"コンクリート工事",cats:[],comingSoon:true},
       {id:"c12",code:"施工12",text:"鉄骨工事",cats:[],comingSoon:true}
     ]},
-    {label:"【仕上げ・設備・改修】",items:[
+    {label:"【仕上げ・設備・改修】",colorClass:"toc-grp-finishing",items:[
       {id:"c13",code:"施工13",text:"防水工事",cats:[],comingSoon:true},
       {id:"c14",code:"施工14",text:"屋根・外装・塗装工事",cats:[],comingSoon:true},
       {id:"c15",code:"施工15",text:"左官・タイル・石工事",cats:[],comingSoon:true},
@@ -1174,9 +1192,10 @@ function buildToc(){
   let html='<div class="toc-cols">';
   INDEX_SECTIONS.forEach(section=>{
     html+='<div class="toc-col">';
-    html+='<div class="toc-major">'+section.heading+'</div>';
+    const majorCls='toc-major'+(section.heading==='施工'?' toc-major-seko':'');
+    html+='<div class="'+majorCls+'">'+section.heading+'</div>';
     section.groups.forEach(group=>{
-      html+='<div class="toc-group">'+group.label+'</div>';
+      html+='<div class="toc-group '+(group.colorClass||'')+'">'+group.label+'</div>';
       group.items.forEach(item=>{
         const cats=item.cats||[];
         const count=(cats.length&&!item.comingSoon)?Q.filter(q=>cats.includes(q.cat)).length:0;
